@@ -1,4 +1,4 @@
-package ehu.isad.controller.url;
+package ehu.isad.model;
 
 public class URL {
     private String url;
