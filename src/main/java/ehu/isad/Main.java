@@ -1,0 +1,101 @@
+package ehu.isad;
+
+import ehu.isad.controller.ui.WhatWebKud;
+import ehu.isad.controller.ui.HasieraKud;
+import ehu.isad.controller.ui.CMSKud;
+import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Callback;
+
+import java.io.IOException;
+
+
+public class Main extends Application {
+
+    private Stage stage;
+    private Scene sceneHasiera;
+    private Parent hasieraUI;
+    private HasieraKud hasieraKud;
+    private WhatWebKud whatWebKud;
+    private CMSKud CMSKud;
+    private double xOffset = 0;
+    private double yOffset = 0;
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        stage = primaryStage;
+        pantailakKargatu();
+
+        leihoaMugitu();
+        stage.setScene(sceneHasiera);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
+    }
+
+    private void leihoaMugitu() throws IOException {
+        //you can use underdecorated or transparent.
+        stage.initStyle(StageStyle.TRANSPARENT);
+
+        //grab your root here
+        hasieraUI.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+
+        //move around here
+        hasieraUI.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                stage.setX(event.getScreenX() - xOffset);
+                stage.setY(event.getScreenY() - yOffset);
+            }
+        });
+    }
+
+    private void pantailakKargatu() throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/hasiera.fxml"));
+        hasieraKud = new HasieraKud(this); //  setMain() metodoa ekidituz
+        whatWebKud = new WhatWebKud();
+        CMSKud = new CMSKud();
+
+        Callback<Class<?>, Object> controllerFactory = type -> {
+            if (type == HasieraKud.class) {
+                return hasieraKud;
+            } else if (type == WhatWebKud.class) {
+                return whatWebKud;
+            } else if (type == CMSKud.class) {
+                return CMSKud;
+            } else {
+                // default behavior for controllerFactory:
+                try {
+                    return type.newInstance();
+                } catch (Exception exc) {
+                    exc.printStackTrace();
+                    throw new RuntimeException(exc); // fatal, just bail...
+                }
+            }
+        };
+
+        loader.setControllerFactory(controllerFactory);
+        hasieraUI = (Parent) loader.load();
+        sceneHasiera=new Scene(hasieraUI);
+    }
+
+    //Get
+    public CMSKud getHelburuakKud(){
+        return this.CMSKud;
+    }
+
+
+
+}
