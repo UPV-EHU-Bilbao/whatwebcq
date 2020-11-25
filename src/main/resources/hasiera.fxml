@@ -19,6 +19,9 @@
             <AnchorPane fx:id="paneWhatWeb" prefHeight="600.0" prefWidth="589.0" style="-fx-background-color: #FFFFFF;">
                <fx:include fx:id="whatweb" source="whatweb.fxml" />
             </AnchorPane>
+            <AnchorPane fx:id="paneServer" prefHeight="600.0" prefWidth="589.0" style="-fx-background-color: #FFFFFF;">
+               <fx:include fx:id="server" source="server.fxml" />
+            </AnchorPane>
          </children>
       </StackPane>
       <VBox prefHeight="623.0" prefWidth="254.0" style="-fx-background-color: #3F2B63;" stylesheets="@fullpackstyling.css">
@@ -45,7 +48,7 @@
                   <FontAwesomeIconView fill="WHITE" />
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="57.0" prefWidth="253.0" styleClass="buttonLateral" stylesheets="@fullpackstyling.css" text="Server" textFill="WHITE">
+            <Button fx:id="btnServer" mnemonicParsing="false" onAction="#onClick" prefHeight="57.0" prefWidth="253.0" styleClass="buttonLateral" stylesheets="@fullpackstyling.css" text="Server" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="CLOUD" />
                </graphic>

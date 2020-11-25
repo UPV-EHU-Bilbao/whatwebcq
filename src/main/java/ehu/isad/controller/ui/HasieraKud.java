@@ -23,6 +23,9 @@ public class HasieraKud implements Initializable {
     @FXML
     private AnchorPane paneWhatWeb;
 
+    @FXML
+    private AnchorPane paneServer;
+
     //AnchorPanez aldatzeko botoiak
     @FXML
     private Button btnWhatWeb;
@@ -31,10 +34,16 @@ public class HasieraKud implements Initializable {
     private Button btnCMS;
 
     @FXML
+    private Button btnServer;
+
+    @FXML
     private CMSKud cmsController ;
 
     @FXML
     private WhatWebKud whatwebController ;
+
+    @FXML
+    private ServerKud serverController ;
 
 
     //Irten
@@ -55,6 +64,10 @@ public class HasieraKud implements Initializable {
         else if(btn.equals(this.btnCMS)){
             cmsController.urlSartu();
             paneCMS.toFront();
+        }
+        else if(btn.equals(this.btnServer)){
+            serverController.aktualizatuLista();
+            paneServer.toFront();
         }
         else if(btn.equals(this.btnIrten)){
             this.irten();
