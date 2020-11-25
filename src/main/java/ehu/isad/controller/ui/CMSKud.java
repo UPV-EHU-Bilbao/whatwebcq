@@ -1,5 +1,6 @@
 package ehu.isad.controller.ui;
 
+import ehu.isad.Main;
 import ehu.isad.controller.db.CMSDBKud;
 import ehu.isad.model.URL;
 import javafx.collections.FXCollections;
@@ -7,9 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
@@ -36,6 +35,14 @@ public class CMSKud implements Initializable {
     @FXML
     private TableColumn<URL, String> tcLastUpdated;
 
+    @FXML
+    private TextField txtUrl;
+
+    @FXML
+    private ComboBox<String> cmbCombo;
+
+    @FXML
+    private Button btnAdd;
 
     @FXML
     void onClick(ActionEvent event) throws IOException {
@@ -48,9 +55,18 @@ public class CMSKud implements Initializable {
         tcURL.setCellValueFactory(new PropertyValueFactory<>("url"));
     }
 
+    public boolean urlEzNull(){
+        if(txtUrl.equals(null)){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
 
     @Override
     public void initialize(java.net.URL location, ResourceBundle resources) {
-
+        cmbCombo.getItems().addAll("Url","Cms","Version","LastUpdated");
     }
 }

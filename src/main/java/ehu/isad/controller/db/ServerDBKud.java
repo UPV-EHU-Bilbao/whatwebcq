@@ -16,9 +16,8 @@ public class ServerDBKud {
     }
 
     public List<Server> urlLortu() {
-        String query = "Select target, string from targets t, scans s \n" +
-                "where t.target_id=s.target_id and s.plugin_id=268 and t.target_id =(Select target_id from targets where target like \"%you%\")\n" +
-                "limit 1;";
+        String query = "Select DISTINCT target, string from targets t, scans s \n" +
+                "where t.target_id=s.target_id and s.plugin_id=268";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
         List<Server> emaitza = new ArrayList<>();
