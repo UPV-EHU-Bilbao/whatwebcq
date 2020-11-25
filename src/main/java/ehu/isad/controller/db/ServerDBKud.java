@@ -13,21 +13,20 @@ public class ServerDBKud {
         return instance;
     }
 
-    public List<String> urlLortu(){
+    public List<String> urlLortu() {
         String query = "select target from targets";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
-        List<String> emaitza=new ArrayList<>();
+        List<String> emaitza = new ArrayList<>();
 
         try {
             while (rs.next()) {
-                String url=rs.getString("target");
+                String url = rs.getString("target");
                 emaitza.add(url);
             }
-        } catch(SQLException throwables){
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         return emaitza;
     }
-
 }

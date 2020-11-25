@@ -109,6 +109,10 @@ public class WhatWebKud implements Initializable {
         return processes;
     }
 
+    public void sartuURL(){
+
+    }
+
     public boolean urlEzNull(){
         if(txtURL.equals(null)){
             return false;
