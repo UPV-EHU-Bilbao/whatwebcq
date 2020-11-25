@@ -1,5 +1,6 @@
 package ehu.isad;
 
+import ehu.isad.controller.ui.ServerKud;
 import ehu.isad.controller.ui.WhatWebKud;
 import ehu.isad.controller.ui.HasieraKud;
 import ehu.isad.controller.ui.CMSKud;
@@ -23,6 +24,7 @@ public class Main extends Application {
     private Parent hasieraUI;
     private HasieraKud hasieraKud;
     private WhatWebKud whatWebKud;
+    private ServerKud serverKud;
     private CMSKud CMSKud;
     private double xOffset = 0;
     private double yOffset = 0;
@@ -66,6 +68,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/hasiera.fxml"));
         hasieraKud = new HasieraKud(this); //  setMain() metodoa ekidituz
         whatWebKud = new WhatWebKud();
+        serverKud = new ServerKud();
         CMSKud = new CMSKud();
 
         Callback<Class<?>, Object> controllerFactory = type -> {
@@ -75,7 +78,11 @@ public class Main extends Application {
                 return whatWebKud;
             } else if (type == CMSKud.class) {
                 return CMSKud;
-            } else {
+            }
+            else if(type == ServerKud.class){
+                return serverKud;
+            }
+            else {
                 // default behavior for controllerFactory:
                 try {
                     return type.newInstance();
@@ -90,12 +97,4 @@ public class Main extends Application {
         hasieraUI = (Parent) loader.load();
         sceneHasiera=new Scene(hasieraUI);
     }
-
-    //Get
-    public CMSKud getHelburuakKud(){
-        return this.CMSKud;
-    }
-
-
-
 }

@@ -1,5 +1,7 @@
 package ehu.isad.controller.db;
 
+import ehu.isad.model.Server;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,16 +15,20 @@ public class ServerDBKud {
         return instance;
     }
 
-    public List<String> urlLortu() {
-        String query = "select target from targets";
+    public List<Server> urlLortu() {
+        String query = "Select target, string from targets t, scans s \n" +
+                "where t.target_id=s.target_id and s.plugin_id=268 and t.target_id =(Select target_id from targets where target like \"%you%\")\n" +
+                "limit 1;";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
-        List<String> emaitza = new ArrayList<>();
+        List<Server> emaitza = new ArrayList<>();
 
         try {
             while (rs.next()) {
-                String url = rs.getString("target");
-                emaitza.add(url);
+                String target = rs.getString("target");
+                String server = rs.getString("string");
+                Server serverEma = new Server(target,server);
+                emaitza.add(serverEma);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

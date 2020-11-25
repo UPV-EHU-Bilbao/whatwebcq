@@ -59,14 +59,14 @@ public class HasieraKud implements Initializable {
 
         Button btn = (Button) event.getSource();
         if(btn.equals(this.btnWhatWeb)){
-            whatwebController
             paneWhatWeb.toFront();
         }
         else if(btn.equals(this.btnCMS)){
-            cmsController.urlSartu();
+            //cmsController.urlSartu();
             paneCMS.toFront();
         }
         else if(btn.equals(this.btnServer)){
+            serverController.aktualizatuLista();
             paneServer.toFront();
         }
         else if(btn.equals(this.btnIrten)){
