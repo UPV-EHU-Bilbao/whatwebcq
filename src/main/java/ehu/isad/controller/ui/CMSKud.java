@@ -20,6 +20,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -56,8 +57,8 @@ public class CMSKud implements Initializable {
     void onClick(ActionEvent event) throws IOException {
     }
 
-    public void urlSartu(){
-        tbvTaula.getItems().remove(0,tbvTaula.getItems().size());
+    public void urlSartu() throws SQLException {
+        //tbvTaula.getItems().remove(0,tbvTaula.getItems().size());
         List<String> targetak = CMSDBKud.getInstance().targetakLortu();
         List<URL> kargatzekoa = CMSDBKud.getInstance().cmsLortu(targetak);
         ObservableList<URL> Urlak = FXCollections.observableArrayList(kargatzekoa);
@@ -76,7 +77,7 @@ public class CMSKud implements Initializable {
         }
     }
 
-    public void filtroa() {
+    public void filtroa() throws SQLException {
 
         /*ObservableList<List<Object>> allData,
         TextField filterField, TableView<List<Object>> table*/
@@ -132,6 +133,10 @@ public class CMSKud implements Initializable {
     public void initialize(java.net.URL location, ResourceBundle resources) {
         cmbCombo.getItems().addAll("Url", "Cms", "Version", "LastUpdated");
         cmbCombo.getSelectionModel().selectFirst();
-        filtroa();
+        try {
+            filtroa();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

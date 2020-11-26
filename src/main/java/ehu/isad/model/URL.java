@@ -1,5 +1,8 @@
 package ehu.isad.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class URL {
     private String url;
     private String cms;

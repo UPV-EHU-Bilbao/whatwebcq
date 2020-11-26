@@ -24,8 +24,8 @@
       <Label layoutX="275.0" layoutY="211.0" text="Eskaneatutako webguneak" />
       <TableView fx:id="tvTaula" layoutX="231.0" layoutY="264.0" prefHeight="242.0" prefWidth="264.0">
         <columns>
-          <TableColumn fx:id="tblTarget" prefWidth="75.0" text="Target" />
-          <TableColumn fx:id="tblServer" prefWidth="100.0" text="Server" />
+          <TableColumn fx:id="tcTarget" prefWidth="75.0" text="Target" />
+          <TableColumn fx:id="tcServer" prefWidth="100.0" text="Server" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

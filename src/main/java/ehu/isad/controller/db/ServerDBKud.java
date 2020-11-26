@@ -15,9 +15,26 @@ public class ServerDBKud {
         return instance;
     }
 
-    public List<Server> urlLortu() {
-        String query = "Select DISTINCT target, string from targets t, scans s \n" +
-                "where t.target_id=s.target_id and s.plugin_id=268";
+    public List<String> targetakLortu(){
+        List<String> emaitza = new ArrayList<>();
+        String query = "SELECT DISTINCT target FROM targets";
+        DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
+        ResultSet rs = dbKudeatzaile.execSQL(query);
+
+        try{
+            while(rs.next()){
+                String target = rs.getString("target");
+                emaitza.add(target);
+            }
+        } catch(SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return emaitza;
+    }
+
+    public List<Server> serverLortu(List<String> targetak) {
+        String query = "Select DISTINCT target, string from targets t, scans s\n" +
+                "where t.target_id=s.target_id and s.plugin_id=268 and t.target like \"%Ikas%\"";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
         List<Server> emaitza = new ArrayList<>();

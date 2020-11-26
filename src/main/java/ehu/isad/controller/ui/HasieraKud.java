@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class HasieraKud implements Initializable {
@@ -55,7 +56,7 @@ public class HasieraKud implements Initializable {
     }
 
     @FXML
-    void onClick(ActionEvent event) throws IOException {
+    void onClick(ActionEvent event) throws IOException, SQLException {
 
         Button btn = (Button) event.getSource();
         if(btn.equals(this.btnWhatWeb)){
