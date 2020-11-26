@@ -57,10 +57,10 @@ public class CMSDBKud {
                     String target = rs.getString("target");
                     String cms = rs.getString("string");
                     String version = rs.getString("version");
-                    URL url = new URL(target, cms, version, new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+                    URL url = new URL(target, cms, version, new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
                     emaitza.add(url);
                 } else {
-                    URL url = new URL(eskaneatu, "unknown", "0", new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+                    URL url = new URL(eskaneatu, "unknown", "0", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
                     emaitza.add(url);
                 }
 
