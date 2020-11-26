@@ -21,8 +21,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.ArrayBlockingQueue;
 
 public class CMSKud implements Initializable {
 
@@ -58,7 +61,6 @@ public class CMSKud implements Initializable {
     }
 
     public void urlSartu() throws SQLException {
-        //tbvTaula.getItems().remove(0,tbvTaula.getItems().size());
         List<String> targetak = CMSDBKud.getInstance().targetakLortu();
         List<URL> kargatzekoa = CMSDBKud.getInstance().cmsLortu(targetak);
         ObservableList<URL> Urlak = FXCollections.observableArrayList(kargatzekoa);
@@ -66,6 +68,7 @@ public class CMSKud implements Initializable {
         tcURL.setCellValueFactory(new PropertyValueFactory<>("url"));
         tcCMS.setCellValueFactory(new PropertyValueFactory<>("cms"));
         tcVersion.setCellValueFactory(new PropertyValueFactory<>("version"));
+        tcLastUpdated.setCellValueFactory(new PropertyValueFactory<>("lastUpdated"));
     }
 
     public boolean urlEzNull(){
@@ -139,4 +142,5 @@ public class CMSKud implements Initializable {
             throwables.printStackTrace();
         }
     }
+
 }

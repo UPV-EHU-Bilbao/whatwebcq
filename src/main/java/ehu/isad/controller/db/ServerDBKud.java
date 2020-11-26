@@ -19,7 +19,7 @@ public class ServerDBKud {
 
     public List<String> targetakLortu(){
         List<String> emaitza = new ArrayList<>();
-        String query = "SELECT DISTINCT target FROM targets";
+        String query = "SELECT DISTINCT target FROM targets, scans ORDER BY scan_id";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
 
@@ -40,8 +40,8 @@ public class ServerDBKud {
         Iterator<String> itr = targetak.iterator();
         while(itr.hasNext()) {
             eskaneatu = itr.next();
-            String query = "Select DISTINCT target, string from targets t, scans s\n" +
-                    "where t.target_id=s.target_id and s.plugin_id=268 and t.target like \"%" + eskaneatu + "%\"";
+            String query = "Select DISTINCT target, string FROM targets t, scans s\n" +
+                    "WHERE t.target_id=s.target_id AND s.plugin_id=268 AND t.target LIKE \"%" + eskaneatu + "%\"";
             DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
             ResultSet rs = dbKudeatzaile.execSQL(query);
             try {
@@ -52,6 +52,7 @@ public class ServerDBKud {
                     emaitza.add(serverEma);
                 } else {
                     Server serverEma = new Server(eskaneatu, "unknown");
+                    emaitza.add(serverEma);
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();

@@ -1,5 +1,6 @@
 package ehu.isad.controller.db;
 
+import ehu.isad.controller.ui.CMSKud;
 import ehu.isad.controller.ui.ServerKud;
 import ehu.isad.model.Server;
 import ehu.isad.model.URL;
@@ -23,7 +24,7 @@ public class CMSDBKud {
 
     public List<String> targetakLortu(){
         List<String> emaitza = new ArrayList<>();
-        String query = "SELECT DISTINCT target FROM targets";
+        String query = "SELECT DISTINCT target FROM targets, scans ORDER BY scan_id";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
 
@@ -48,20 +49,20 @@ public class CMSDBKud {
                     "FROM scans s \n" +
                     "INNER JOIN targets t ON s.target_id=t.target_id\n" +
                     "INNER JOIN scans c ON t.target_id=c.target_id\n" +
-                    "WHERE (c.plugin_id=192) and (s.plugin_id=1152 or s.plugin_id=132 or s.plugin_id=337) and t.target like \"%"+eskaneatu+"%\"";
+                    "WHERE (c.plugin_id=192) AND (s.plugin_id=1152 OR s.plugin_id=132 OR s.plugin_id=337) AND t.target = \""+eskaneatu+"\"";
             DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
             ResultSet rs = dbKudeatzaile.execSQL(query);
             try {
-                    if (rs.next()!=false) {
-                        String target = rs.getString("target");
-                        String cms = rs.getString("string");
-                        String version = rs.getString("version");
-                        URL url = new URL(target, cms, version, new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
-                        emaitza.add(url);
-                    } else {
-                        URL url = new URL(eskaneatu, "unknown", "0", new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
-                        emaitza.add(url);
-                    }
+                if (rs.next()!=false) {
+                    String target = rs.getString("target");
+                    String cms = rs.getString("string");
+                    String version = rs.getString("version");
+                    URL url = new URL(target, cms, version, new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+                    emaitza.add(url);
+                } else {
+                    URL url = new URL(eskaneatu, "unknown", "0", new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+                    emaitza.add(url);
+                }
 
 
             } catch (SQLException throwables) {
