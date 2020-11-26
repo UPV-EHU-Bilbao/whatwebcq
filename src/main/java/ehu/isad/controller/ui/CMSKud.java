@@ -57,10 +57,14 @@ public class CMSKud implements Initializable {
     }
 
     public void urlSartu(){
-        List<URL> kargatzekoa = CMSDBKud.getInstance().urlLortu();
+        tbvTaula.getItems().remove(0,tbvTaula.getItems().size());
+        List<String> targetak = CMSDBKud.getInstance().targetakLortu();
+        List<URL> kargatzekoa = CMSDBKud.getInstance().cmsLortu(targetak);
         ObservableList<URL> Urlak = FXCollections.observableArrayList(kargatzekoa);
         tbvTaula.setItems(Urlak);
         tcURL.setCellValueFactory(new PropertyValueFactory<>("url"));
+        tcCMS.setCellValueFactory(new PropertyValueFactory<>("cms"));
+        tcVersion.setCellValueFactory(new PropertyValueFactory<>("version"));
     }
 
     public boolean urlEzNull(){
@@ -76,8 +80,8 @@ public class CMSKud implements Initializable {
 
         /*ObservableList<List<Object>> allData,
         TextField filterField, TableView<List<Object>> table*/
-
-        ObservableList<URL> urlLista = FXCollections.observableArrayList(CMSDBKud.getInstance().urlLortu());
+        List<String> targetak = CMSDBKud.getInstance().targetakLortu();
+        ObservableList<URL> urlLista = FXCollections.observableArrayList(CMSDBKud.getInstance().cmsLortu(targetak));
         FilteredList<URL> filteredData  = new FilteredList<>(urlLista, p -> true);
         txtUrl.setOnKeyReleased(e ->
         {
