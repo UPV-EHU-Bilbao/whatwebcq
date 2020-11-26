@@ -1,10 +1,12 @@
 package ehu.isad.controller.db;
 
 import ehu.isad.model.Server;
+import ehu.isad.model.URL;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ServerDBKud {
@@ -33,21 +35,27 @@ public class ServerDBKud {
     }
 
     public List<Server> serverLortu(List<String> targetak) {
-        String query = "Select DISTINCT target, string from targets t, scans s\n" +
-                "where t.target_id=s.target_id and s.plugin_id=268 and t.target like \"%Ikas%\"";
-        DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
-        ResultSet rs = dbKudeatzaile.execSQL(query);
+        String eskaneatu="";
         List<Server> emaitza = new ArrayList<>();
-
-        try {
-            while (rs.next()) {
-                String target = rs.getString("target");
-                String server = rs.getString("string");
-                Server serverEma = new Server(target,server);
-                emaitza.add(serverEma);
+        Iterator<String> itr = targetak.iterator();
+        while(itr.hasNext()) {
+            eskaneatu = itr.next();
+            String query = "Select DISTINCT target, string from targets t, scans s\n" +
+                    "where t.target_id=s.target_id and s.plugin_id=268 and t.target like \"%" + eskaneatu + "%\"";
+            DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
+            ResultSet rs = dbKudeatzaile.execSQL(query);
+            try {
+                if (rs.next() != false) {
+                    String target = rs.getString("target");
+                    String server = rs.getString("string");
+                    Server serverEma = new Server(target, server);
+                    emaitza.add(serverEma);
+                } else {
+                    Server serverEma = new Server(eskaneatu, "unknown");
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
         }
         return emaitza;
     }

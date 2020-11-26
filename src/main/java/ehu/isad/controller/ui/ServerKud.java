@@ -45,9 +45,8 @@ public class ServerKud implements Initializable {
         List<ehu.isad.model.Server> kargatzekoa = ServerDBKud.getInstance().serverLortu(targetak);
         ObservableList<ehu.isad.model.Server> servers = FXCollections.observableArrayList(kargatzekoa);
         tvTaula.setItems(servers);
-        tcTarget.setCellValueFactory(new PropertyValueFactory<>("url"));
-        tcServer.setCellValueFactory(new PropertyValueFactory<>("cms"));
-
+        tcTarget.setCellValueFactory(new PropertyValueFactory<>("target"));
+        tcServer.setCellValueFactory(new PropertyValueFactory<>("server"));
     }
 
     @Override
