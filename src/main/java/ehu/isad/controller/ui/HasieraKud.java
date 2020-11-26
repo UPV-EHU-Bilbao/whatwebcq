@@ -62,7 +62,7 @@ public class HasieraKud implements Initializable {
             paneWhatWeb.toFront();
         }
         else if(btn.equals(this.btnCMS)){
-            //cmsController.urlSartu();
+            cmsController.urlSartu();
             paneCMS.toFront();
         }
         else if(btn.equals(this.btnServer)){

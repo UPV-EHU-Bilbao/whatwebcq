@@ -2,6 +2,8 @@ package ehu.isad.controller.ui;
 
 import ehu.isad.controller.db.ServerDBKud;
 import ehu.isad.model.Server;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -34,10 +36,10 @@ public class ServerKud implements Initializable {
     void onClick(ActionEvent event) throws IOException {
     }
 
-    public void aktualizatuLista(){
-        tvTaula.getItems().remove(0,tvTaula.getItems().size());
-        List<Server> lista= ServerDBKud.getInstance().urlLortu();
-        for(int i=0;i<lista.size();i++){
+    public void aktualizatuLista() {
+        tvTaula.getItems().remove(0, tvTaula.getItems().size());
+        List<Server> lista = ServerDBKud.getInstance().urlLortu();
+        for (int i = 0; i < lista.size(); i++) {
             tvTaula.getItems().add(lista.get(i));
         }
     }

@@ -44,4 +44,11 @@ public class URL {
     public void setLastUpdated(String lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
+
+    public boolean contains(String textIwantB) {
+        if(this.url.contains(textIwantB)){
+            return true;
+        }
+        return false;
+    }
 }
