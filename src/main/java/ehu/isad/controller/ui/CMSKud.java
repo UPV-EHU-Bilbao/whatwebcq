@@ -61,10 +61,9 @@ public class CMSKud implements Initializable {
     }
 
     public void urlSartu() throws SQLException {
-        List<String> targetak = CMSDBKud.getInstance().targetakLortu();
-        List<URL> kargatzekoa = CMSDBKud.getInstance().cmsLortu(targetak);
-        ObservableList<URL> Urlak = FXCollections.observableArrayList(kargatzekoa);
-        tbvTaula.setItems(Urlak);
+        List<URL> kargatzekoa = CMSDBKud.getInstance().cmsListaLortu();
+        ObservableList<URL> urls = FXCollections.observableArrayList(kargatzekoa);
+        tbvTaula.setItems(urls);
         tcURL.setCellValueFactory(new PropertyValueFactory<>("url"));
         tcCMS.setCellValueFactory(new PropertyValueFactory<>("cms"));
         tcVersion.setCellValueFactory(new PropertyValueFactory<>("version"));
@@ -80,10 +79,10 @@ public class CMSKud implements Initializable {
         }
     }
 
-    public void filtroa() throws SQLException {
+    /*public void filtroa() throws SQLException {
 
-        /*ObservableList<List<Object>> allData,
-        TextField filterField, TableView<List<Object>> table*/
+        ObservableList<List<Object>> allData,
+        TextField filterField, TableView<List<Object>> table
         List<String> targetak = CMSDBKud.getInstance().targetakLortu();
         ObservableList<URL> urlLista = FXCollections.observableArrayList(CMSDBKud.getInstance().cmsLortu(targetak));
         FilteredList<URL> filteredData  = new FilteredList<>(urlLista, p -> true);
@@ -128,7 +127,7 @@ public class CMSKud implements Initializable {
         SortedList<URL> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(tbvTaula.comparatorProperty());
         tbvTaula.setItems(sortedData);
-    }
+    }*/
 
 
 
@@ -136,11 +135,11 @@ public class CMSKud implements Initializable {
     public void initialize(java.net.URL location, ResourceBundle resources) {
         cmbCombo.getItems().addAll("Url", "Cms", "Version", "LastUpdated");
         cmbCombo.getSelectionModel().selectFirst();
-        try {
+        /*try {
             filtroa();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }
+        }*/
     }
 
 }

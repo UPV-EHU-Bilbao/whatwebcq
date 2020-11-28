@@ -4,6 +4,8 @@ import ehu.isad.controller.ui.ServerKud;
 import ehu.isad.controller.ui.WhatWebKud;
 import ehu.isad.controller.ui.HasieraKud;
 import ehu.isad.controller.ui.CMSKud;
+import ehu.isad.utils.Config;
+import ehu.isad.utils.Utils;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
