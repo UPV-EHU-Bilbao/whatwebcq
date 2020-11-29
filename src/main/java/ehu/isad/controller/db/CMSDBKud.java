@@ -22,7 +22,7 @@ public class CMSDBKud {
         return instance;
     }
 
-    /*public List<String> targetakLortu(){
+    public List<String> targetakLortu(){
         List<String> emaitza = new ArrayList<>();
         String query = "SELECT DISTINCT target FROM targets, scans ORDER BY scan_id";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
@@ -70,7 +70,7 @@ public class CMSDBKud {
             }
         }
         return emaitza;
-    }*/
+    }
 
     public String azkenengoTargetLortu() throws SQLException {
         String query = "SELECT target FROM targets t, scans s WHERE scan_id=(SELECT MAX(scan_id) FROM scans) AND s.target_id=t.target_id";
@@ -102,17 +102,29 @@ public class CMSDBKud {
 
     public void eguneratuData(String target) {
         String data = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-        String query = "UPDATE cms_taula SET lastUpdated = \""+data+"\" WHERE target = \""+target+"\"";
+        String query = "UPDATE cms_taula SET lastUpdated = \""+data+"\" WHERE target LIKE  \"%"+target+"%\"";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         dbKudeatzaile.execSQL(query);
     }
 
-    public void gehituCMSBerria(String target) {
+    public void gehituCMSBerria(String target) throws SQLException {
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
+        String lortuCMSAtributuak = "SELECT DISTINCT target, s.version, c.string\n" +
+                "FROM scans s \n" +
+                "INNER JOIN targets t ON s.target_id=t.target_id\n" +
+                "INNER JOIN scans c ON t.target_id=c.target_id\n" +
+                "WHERE (c.plugin_id=192) AND (s.plugin_id=1152 OR s.plugin_id=132 OR s.plugin_id=337) AND t.target = \""+target+"\"";
+        ResultSet rs = dbKudeatzaile.execSQL(lortuCMSAtributuak);
+        rs.next();
+        String version = rs.getString("version");
+        String cms = rs.getString("string");
         String data = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-        String query = "INSERT INTO cms_taula (target, version, cms, lastUpdated) VALUES (\"" + target + "\",\"0\",\"unknown\",\"" + data + "\")";
-        dbKudeatzaile.execSQL(query);
-
+        if(cms.equals("")){
+            String query = "INSERT INTO cms_taula (target, version, cms, lastUpdated) VALUES (\"" + target + "\",\"0\",\"unknown\",\"" + data + "\")";
+            dbKudeatzaile.execSQL(query);
+        }else{
+            String query = "INSERT INTO cms_taula (target, version, cms, lastUpdated) VALUES (\"" + target + "\",\""+version+"\",\""+cms+"\",\"" + data + "\")";
+        }
     }
 
     public List<URL> cmsListaLortu() {

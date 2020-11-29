@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
+import java.io.File;
 import java.io.IOException;
 
 
@@ -33,6 +34,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        //sortuFitxategia();
         stage = primaryStage;
         pantailakKargatu();
 
@@ -99,4 +101,8 @@ public class Main extends Application {
         hasieraUI = (Parent) loader.load();
         sceneHasiera=new Scene(hasieraUI);
     }
+
+    /*private void sortuFitxategia(){
+        File tempFile = new File(Config.TMPFILE);
+    }*/
 }

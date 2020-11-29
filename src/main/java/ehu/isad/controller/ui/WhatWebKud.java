@@ -57,10 +57,10 @@ public class WhatWebKud implements Initializable {
 
     }
 
-    private boolean existitzenDa() {
+    /*private boolean existitzenDa() {
         File tempFile = new File(Config.TMPFILE);
         return tempFile.exists();
-    }
+    }*/
 
     private void deleteFile() {
         File tempFile = new File(Config.TMPFILE);
@@ -69,7 +69,6 @@ public class WhatWebKud implements Initializable {
 
     //Transforma los ignore en or ignore
     public void sqlLiteKargatu() throws IOException, SQLException {
-
         FileInputStream fstream = new FileInputStream(Config.TMPFILE);
         BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
         String linea="";
@@ -87,6 +86,8 @@ public class WhatWebKud implements Initializable {
 
     public List<String> komandoaExekutatu(String url) {
         List<String> processes = new LinkedList<String>();
+        File archivo = new File(Config.TMPFILE);
+        System.out.println("El archivo "+Config.TMPFILE+" existe : "+archivo.exists());
         try {
             String line;
             Process p = null;
@@ -94,17 +95,20 @@ public class WhatWebKud implements Initializable {
                 p = Runtime.getRuntime().exec
                         (System.getenv("windir") + "\\system32\\" + "tasklist.exe");
             } else {
-                if (existitzenDa()) {
+                if (datuBaseaSortutaDago()) {
+                    /*if(!archivo.exists()){
+                        sortuFitxategia();
+                    }*/
                     p = Runtime.getRuntime().exec("whatweb --color=never " +
                             "--log-sql=" + Config.TMPFILE + " " + url);
-                } else {
+                }else {
                     p = Runtime.getRuntime().exec("whatweb --color=never " +
                             "--log-sql-create=" + Config.TMPFILE + " " + url);
                 }
-                sqlLiteKargatu();
-                datuBaseaEguneratu();
-                deleteFile();
             }
+            sqlLiteKargatu();
+            datuBaseaEguneratu();
+            deleteFile();
             BufferedReader input =
                     new BufferedReader(new InputStreamReader(p.getInputStream()));
             while ((line = input.readLine()) != null) {
@@ -118,14 +122,14 @@ public class WhatWebKud implements Initializable {
         return processes;
     }
 
-   public boolean urlEzNull(){
+   /*public boolean urlEzNull(){
         if(txtURL.equals(null)){
             return false;
         }
         else{
             return true;
         }
-    }
+    }*/
 
     public void datuBaseaEguneratu() throws SQLException {
         String target = CMSDBKud.getInstance().azkenengoTargetLortu();
@@ -136,6 +140,14 @@ public class WhatWebKud implements Initializable {
         else{
             CMSDBKud.getInstance().gehituCMSBerria(target);
         }
+    }
+
+    private void sortuFitxategia(){
+        File tempFile = new File(Config.TMPFILE);
+    }
+
+    private boolean datuBaseaSortutaDago() throws SQLException {
+        return WhatWebDBKud.getInstance().datuBaseaSortutaDago();
     }
 
     @Override
