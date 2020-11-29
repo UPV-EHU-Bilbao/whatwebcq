@@ -63,12 +63,12 @@ public class WhatWebKud implements Initializable {
     }*/
 
     private void deleteFile() throws IOException {
-        /*File tempFile = new File(Config.TMPFILE);
-        tempFile.delete();*/
-        FileWriter fstreamw = new FileWriter(Config.TMPFILE);
+        File tempFile = new File(Config.TMPFILE);
+        tempFile.delete();
+       /* FileWriter fstreamw = new FileWriter(Config.TMPFILE);
         BufferedWriter bw = new BufferedWriter(fstreamw);
         bw.write("");
-        bw.close();
+        bw.close();*/
     }
 
     //Transforma los ignore en or ignore
@@ -90,8 +90,8 @@ public class WhatWebKud implements Initializable {
 
     public List<String> komandoaExekutatu(String url) {
         List<String> processes = new LinkedList<String>();
-        //File archivo = new File(Config.TMPFILE);
-        //System.out.println("El archivo "+Config.TMPFILE+" existe : "+archivo.exists());
+        File archivo = new File(Config.TMPFILE);
+        System.out.println("El archivo "+Config.TMPFILE+" existe : "+archivo.exists());
         sortuFitxategia();
         try {
             String line;
@@ -101,9 +101,6 @@ public class WhatWebKud implements Initializable {
                         (System.getenv("windir") + "\\system32\\" + "tasklist.exe");
             } else {
                 if (datuBaseaSortutaDago()) {
-                    /*if(!archivo.exists()){
-                        sortuFitxategia();
-                    }*/
                     p = Runtime.getRuntime().exec("whatweb --color=never " +
                             "--log-sql=" + Config.TMPFILE + " " + url);
                 }else {
@@ -150,6 +147,7 @@ public class WhatWebKud implements Initializable {
 
     private void sortuFitxategia(){
         File tempFile = new File(Config.TMPFILE);
+        System.out.println(tempFile.exists());
     }
 
     private boolean datuBaseaSortutaDago() throws SQLException {

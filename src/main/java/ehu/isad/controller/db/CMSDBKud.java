@@ -100,11 +100,26 @@ public class CMSDBKud {
         return targets;
     }
 
-    public void eguneratuData(String target) {
-        String data = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-        String query = "UPDATE cms_taula SET lastUpdated = \""+data+"\" WHERE target LIKE  \"%"+target+"%\"";
+    public void eguneratuData(String target) throws SQLException {
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
-        dbKudeatzaile.execSQL(query);
+        String lortuCMSAtributuak = "SELECT DISTINCT target, s.version, c.string\n" +
+                "FROM scans s \n" +
+                "INNER JOIN targets t ON s.target_id=t.target_id\n" +
+                "INNER JOIN scans c ON t.target_id=c.target_id\n" +
+                "WHERE (c.plugin_id=192) AND (s.plugin_id=1152 OR s.plugin_id=132 OR s.plugin_id=337) AND t.target = \""+target+"\"";
+        ResultSet rs = dbKudeatzaile.execSQL(lortuCMSAtributuak);
+        String data = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        rs.next();
+        if(rs.getRow()!=0){
+            String cms = rs.getString("string");
+            String version = rs.getString("version");
+            String query = "UPDATE cms_taula SET lastUpdated = \"" + data + "\", cms = \"" + cms + "\", version = \"" + version + "\" WHERE target LIKE \"%" + target + "%\"";
+            dbKudeatzaile.execSQL(query);
+        }
+        else{
+            String query = "UPDATE cms_taula SET lastUpdated = \""+data+"\" WHERE target LIKE \"%"+target+"%\"";
+            dbKudeatzaile.execSQL(query);
+        }
     }
 
     public void gehituCMSBerria(String target) throws SQLException {
