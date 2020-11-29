@@ -62,9 +62,13 @@ public class WhatWebKud implements Initializable {
         return tempFile.exists();
     }*/
 
-    private void deleteFile() {
-        File tempFile = new File(Config.TMPFILE);
-        tempFile.delete();
+    private void deleteFile() throws IOException {
+        /*File tempFile = new File(Config.TMPFILE);
+        tempFile.delete();*/
+        FileWriter fstreamw = new FileWriter(Config.TMPFILE);
+        BufferedWriter bw = new BufferedWriter(fstreamw);
+        bw.write("");
+        bw.close();
     }
 
     //Transforma los ignore en or ignore
@@ -86,8 +90,9 @@ public class WhatWebKud implements Initializable {
 
     public List<String> komandoaExekutatu(String url) {
         List<String> processes = new LinkedList<String>();
-        File archivo = new File(Config.TMPFILE);
-        System.out.println("El archivo "+Config.TMPFILE+" existe : "+archivo.exists());
+        //File archivo = new File(Config.TMPFILE);
+        //System.out.println("El archivo "+Config.TMPFILE+" existe : "+archivo.exists());
+        sortuFitxategia();
         try {
             String line;
             Process p = null;
@@ -106,6 +111,7 @@ public class WhatWebKud implements Initializable {
                             "--log-sql-create=" + Config.TMPFILE + " " + url);
                 }
             }
+            //System.out.println("El archivo "+Config.TMPFILE+" existe : "+archivo.exists());
             sqlLiteKargatu();
             datuBaseaEguneratu();
             deleteFile();

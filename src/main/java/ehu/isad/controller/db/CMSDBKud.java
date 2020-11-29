@@ -124,6 +124,7 @@ public class CMSDBKud {
             dbKudeatzaile.execSQL(query);
         }else{
             String query = "INSERT INTO cms_taula (target, version, cms, lastUpdated) VALUES (\"" + target + "\",\""+version+"\",\""+cms+"\",\"" + data + "\")";
+            dbKudeatzaile.execSQL(query);
         }
     }
 
