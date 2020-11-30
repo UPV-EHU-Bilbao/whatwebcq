@@ -57,22 +57,23 @@ public class WhatWebKud implements Initializable {
 
     }
 
-    /*private boolean existitzenDa() {
+    private boolean existitzenDa() {
         File tempFile = new File(Config.TMPFILE);
         return tempFile.exists();
-    }*/
+    }
 
     private void deleteFile() throws IOException {
         File tempFile = new File(Config.TMPFILE);
         tempFile.delete();
-       /* FileWriter fstreamw = new FileWriter(Config.TMPFILE);
-        BufferedWriter bw = new BufferedWriter(fstreamw);
-        bw.write("");
-        bw.close();*/
     }
 
     //Transforma los ignore en or ignore
     public void sqlLiteKargatu() throws IOException, SQLException {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         FileInputStream fstream = new FileInputStream(Config.TMPFILE);
         BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
         String linea="";
@@ -81,10 +82,6 @@ public class WhatWebKud implements Initializable {
             WhatWebDBKud.getInstance().urlDatuBaseanSartu(linea.replace("IGNORE", "OR IGNORE"));
         }
         br.close();
-        /*FileWriter fstreamw = new FileWriter(Config.TMPFILE);
-        BufferedWriter bw = new BufferedWriter(fstreamw);
-        bw.write("");
-        bw.close();*/
     }
 
 

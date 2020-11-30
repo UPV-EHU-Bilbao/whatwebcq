@@ -78,68 +78,18 @@ public class CMSKud implements Initializable {
             return true;
         }
     }
-
-    /*public void filtroa() throws SQLException {
-
-        ObservableList<List<Object>> allData,
-        TextField filterField, TableView<List<Object>> table
-        List<String> targetak = CMSDBKud.getInstance().targetakLortu();
-        ObservableList<URL> urlLista = FXCollections.observableArrayList(CMSDBKud.getInstance().cmsLortu(targetak));
-        FilteredList<URL> filteredData  = new FilteredList<>(urlLista, p -> true);
-        txtUrl.setOnKeyReleased(e ->
-        {
-            filteredData.setPredicate(p  ->
-            {
-                if (txtUrl.getText() == null || txtUrl.getText().isEmpty()){
-                    return true;
-                }else {
-                    String pToString = p.toString().toLowerCase().replace(", "," ");
-                    String textIwantB = txtUrl.getText();
-                    String[] parts = textIwantB.toLowerCase().split(" ");
-
-                    if(p.contains(textIwantB)){
-                        System.out.println("p.: " + p);
-
-                    }
-
-                    int counter = 0;
-                    for (int i = 0; i < parts.length; i ++) {
-                        if (parts[i] != null)
-                            if(!(pToString.contains(parts[i]))){
-                                System.out.println("this one is eliminated: " + pToString);
-                                return false;
-                            }
-                        counter++;
-                    }
-
-                    System.out.println("counter: " + counter);
-
-
-
-
-                    return pToString.contains(parts[0]);
-                }
-            });
-
+    public void filtroa()     {
+        txtUrl.textProperty().addListener((observable, oldValue, newValue) -> {
 
         });
 
-        SortedList<URL> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(tbvTaula.comparatorProperty());
-        tbvTaula.setItems(sortedData);
-    }*/
-
+    }
 
 
     @Override
     public void initialize(java.net.URL location, ResourceBundle resources) {
         cmbCombo.getItems().addAll("Url", "Cms", "Version", "LastUpdated");
         cmbCombo.getSelectionModel().selectFirst();
-        /*try {
-            filtroa();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }*/
     }
 
 }

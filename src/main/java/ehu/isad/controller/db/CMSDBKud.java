@@ -39,6 +39,12 @@ public class CMSDBKud {
         return emaitza;
     }
 
+/*    public List<URL> filtroaLortu(){
+        String query = "select ";
+        DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
+        ResultSet rs = dbKudeatzaile.execSQL(query);
+    }*/
+
     public List<URL> cmsLortu(List<String> targetak) throws SQLException {
         String eskaneatu="";
         List<URL> emaitza = new ArrayList<>();
@@ -130,10 +136,14 @@ public class CMSDBKud {
                 "INNER JOIN scans c ON t.target_id=c.target_id\n" +
                 "WHERE (c.plugin_id=192) AND (s.plugin_id=1152 OR s.plugin_id=132 OR s.plugin_id=337) AND t.target = \""+target+"\"";
         ResultSet rs = dbKudeatzaile.execSQL(lortuCMSAtributuak);
-        rs.next();
-        String version = rs.getString("version");
-        String cms = rs.getString("string");
-        String data = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        String version="";
+        String cms ="";
+        String data ="";
+        if (rs.next()) {
+            version = rs.getString("version");
+            cms = rs.getString("string");
+            data = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        }
         if(cms.equals("")){
             String query = "INSERT INTO cms_taula (target, version, cms, lastUpdated) VALUES (\"" + target + "\",\"0\",\"unknown\",\"" + data + "\")";
             dbKudeatzaile.execSQL(query);
