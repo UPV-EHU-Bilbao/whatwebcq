@@ -94,9 +94,6 @@ public class CMSKud implements Initializable {
 
         FilteredList<Webgunea> filteredData = new FilteredList<>(modeloa,b->true);
 
-        /*filteredData.predicateProperty().bind(Bindings.createObjectBinding(
-                ()->urlFiltroa.get(),urlFiltroa));*/
-
         filteredData.predicateProperty().bind(Bindings.createObjectBinding(
                 ()->urlFiltroa.get().and(comboFiltroa.get()),urlFiltroa,comboFiltroa));
 
