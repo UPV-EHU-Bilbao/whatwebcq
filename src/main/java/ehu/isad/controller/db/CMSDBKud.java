@@ -1,10 +1,6 @@
 package ehu.isad.controller.db;
 
-import ehu.isad.controller.ui.CMSKud;
-import ehu.isad.controller.ui.ServerKud;
-import ehu.isad.model.Server;
-import ehu.isad.model.URL;
-import javafx.scene.control.TableColumn;
+import ehu.isad.model.Webgunea;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -39,15 +35,29 @@ public class CMSDBKud {
         return emaitza;
     }
 
-/*    public List<URL> filtroaLortu(){
-        String query = "select ";
+    public List<Webgunea> filtroa(String url){
+        String query ="select target,version,cms,lastUpdated from cms_taula where target like \"%"+url+"%\"";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
-    }*/
+        List<Webgunea> emaitza = new ArrayList<>();
+        try{
+            while(rs.next()){
+                String target = rs.getString("target");
+                String cms = rs.getString("cms");
+                String version = rs.getString("version");
+                String last = rs.getString("lastUpdated");
+                Webgunea a = new Webgunea(target,cms,version,last);
+                emaitza.add(a);
+            }
+        } catch(SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return emaitza;
+    }
 
-    public List<URL> cmsLortu(List<String> targetak) throws SQLException {
+    public List<Webgunea> cmsLortu(List<String> targetak) throws SQLException {
         String eskaneatu="";
-        List<URL> emaitza = new ArrayList<>();
+        List<Webgunea> emaitza = new ArrayList<>();
         Iterator<String> itr = targetak.iterator();
         while(itr.hasNext()) {
             eskaneatu=itr.next();
@@ -63,11 +73,11 @@ public class CMSDBKud {
                     String target = rs.getString("target");
                     String cms = rs.getString("string");
                     String version = rs.getString("version");
-                    URL url = new URL(target, cms, version, new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-                    emaitza.add(url);
+                    Webgunea webgunea = new Webgunea(target, cms, version, new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+                    emaitza.add(webgunea);
                 } else {
-                    URL url = new URL(eskaneatu, "unknown", "0", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-                    emaitza.add(url);
+                    Webgunea webgunea = new Webgunea(eskaneatu, "unknown", "0", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+                    emaitza.add(webgunea);
                 }
 
 
@@ -153,8 +163,8 @@ public class CMSDBKud {
         }
     }
 
-    public List<URL> cmsListaLortu() {
-        List<URL> emaitza = new ArrayList<>();
+    public List<Webgunea> cmsListaLortu() {
+        List<Webgunea> emaitza = new ArrayList<>();
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         String query = "SELECT target, version, cms, lastUpdated FROM cms_taula ORDER BY lastUpdated DESC";
         ResultSet rs = dbKudeatzaile.execSQL(query);
@@ -164,8 +174,8 @@ public class CMSDBKud {
                 String version = rs.getString("version");
                 String cms = rs.getString("cms");
                 String lastUpdated = rs.getString("lastUpdated");
-                URL url = new URL(target,version,cms,lastUpdated);
-                emaitza.add(url);
+                Webgunea webgunea = new Webgunea(target,version,cms,lastUpdated);
+                emaitza.add(webgunea);
             }
         }catch(SQLException throwables) {
             throwables.printStackTrace();

@@ -3,13 +3,13 @@ package ehu.isad.model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class URL {
+public class Webgunea {
     private String url;
     private String cms;
     private String version;
     private String lastUpdated;
 
-    public URL(String url, String cms, String version, String lastUpdated) {
+    public Webgunea(String url, String cms, String version, String lastUpdated) {
         this.url = url;
         this.cms = cms;
         this.version = version;

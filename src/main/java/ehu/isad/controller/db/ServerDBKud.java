@@ -1,7 +1,6 @@
 package ehu.isad.controller.db;
 
 import ehu.isad.model.Server;
-import ehu.isad.model.URL;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
