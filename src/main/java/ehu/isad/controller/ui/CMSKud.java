@@ -97,6 +97,7 @@ public class CMSKud implements Initializable {
         filteredData.predicateProperty().bind(Bindings.createObjectBinding(
                 ()->urlFiltroa.get().and(comboFiltroa.get()),urlFiltroa,comboFiltroa));
 
+
         SortedList<Webgunea> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(tbvTaula.comparatorProperty());
         tbvTaula.setItems(sortedData);
