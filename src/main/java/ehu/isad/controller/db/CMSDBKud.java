@@ -92,7 +92,7 @@ public class CMSDBKud {
         String query = "SELECT target FROM targets t, scans s WHERE scan_id=(SELECT MAX(scan_id) FROM scans) AND s.target_id=t.target_id";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
-        if(rs!=null) {
+        if(rs.getRow()!=0) {
             return rs.getString("target");
         }else{
             System.out.println("Oraindik ez da ezer eskaneatu");
