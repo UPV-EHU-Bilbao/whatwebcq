@@ -39,6 +39,10 @@ public class ServerKud implements Initializable {
     void onClick(ActionEvent event) throws IOException {
     }
 
+    public ServerKud(){
+        System.out.println("server");
+    }
+
     public void aktualizatuLista() {
         //tvTaula.getItems().remove(0, tvTaula.getItems().size());
         List<String> targetak = ServerDBKud.getInstance().targetakLortu();

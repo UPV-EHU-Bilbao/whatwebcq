@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.WeakHashMap;
 
 public class WhatWebKud implements Initializable {
 
@@ -80,6 +81,9 @@ public class WhatWebKud implements Initializable {
         br.close();
     }
 
+    public WhatWebKud(){
+        System.out.println("whatweb");
+    }
 
     public List<String> komandoaExekutatu(String url) {
         List<String> processes = new LinkedList<String>();
@@ -89,6 +93,7 @@ public class WhatWebKud implements Initializable {
             if (System.getProperty("os.name").toLowerCase().contains("win")) {
                 p = Runtime.getRuntime().exec
                         (System.getenv("windir") + "\\system32\\" + "tasklist.exe");
+
             } else {
                 if (datuBaseaSortutaDago()) {
                     p = Runtime.getRuntime().exec("whatweb --color=never " +

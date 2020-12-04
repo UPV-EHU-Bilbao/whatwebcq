@@ -83,6 +83,10 @@ public class HasieraKud implements Initializable {
         stage.close();
     }
 
+    public HasieraKud(){
+        System.out.println("hasiera");
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         paneWhatWeb.toFront();

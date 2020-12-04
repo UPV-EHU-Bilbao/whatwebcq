@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.css.CssMetaData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -103,6 +104,10 @@ public class CMSKud implements Initializable {
         tbvTaula.setItems(sortedData);
 
 
+    }
+
+    public CMSKud(){
+        System.out.println("cms");
     }
 
     @Override
