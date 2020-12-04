@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -81,6 +82,9 @@ public class HasieraKud implements Initializable {
     public void irten() {
         Stage stage = (Stage) btnIrten.getScene().getWindow();
         stage.close();
+        String db = System.getProperties().getProperty("user.home")+".whatwebfx";
+        File tempFile = new File(db);
+        tempFile.delete();
     }
 
     public HasieraKud(){

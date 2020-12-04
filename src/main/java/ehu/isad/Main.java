@@ -69,10 +69,10 @@ public class Main extends Application {
 
     private void pantailakKargatu() throws IOException {
 
-        FXMLLoader load = new FXMLLoader(getClass().getResource("/datuBaseaSartu.fxml"));
+        FXMLLoader loaderDatuBase = new FXMLLoader(getClass().getResource("/datuBaseaSartu.fxml"));
         datuBaseaSartuKud = new DatuBaseaSartuKud(this); //  setMain() metodoa ekidituz
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/hasiera.fxml"));
+        FXMLLoader loaderHasiera = new FXMLLoader(getClass().getResource("/hasiera.fxml"));
         hasieraKud = new HasieraKud(this); //  setMain() metodoa ekidituz
         whatWebKud = new WhatWebKud();
         serverKud = new ServerKud();
@@ -104,13 +104,13 @@ public class Main extends Application {
             }
         };
 
-        load.setControllerFactory(controllerFactory);
-        datuBaseaSartuUI = (Parent) load.load();
+        loaderDatuBase.setControllerFactory(controllerFactory);
+        datuBaseaSartuUI = (Parent) loaderDatuBase.load();
         sceneDatuBaseaSartu=new Scene(datuBaseaSartuUI);
 
 
-        loader.setControllerFactory(controllerFactory);
-        hasieraUI = (Parent) loader.load();
+        loaderHasiera.setControllerFactory(controllerFactory);
+        hasieraUI = (Parent) loaderHasiera.load();
         sceneHasiera=new Scene(hasieraUI);
     }
 
