@@ -65,16 +65,12 @@ public class WhatWebKud implements Initializable {
 
     //Transforma los ignore en or ignore
     public void sqlLiteKargatu() throws IOException, SQLException {
-        try {
-            Thread.sleep(1500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         FileInputStream fstream = new FileInputStream(Config.TMPFILE);
         BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
         String linea="";
 
         while((linea=br.readLine())!=null){
+            System.out.println(linea);
             WhatWebDBKud.getInstance().urlDatuBaseanSartu(linea.replace("IGNORE", "OR IGNORE"));
         }
         br.close();
@@ -98,19 +94,18 @@ public class WhatWebKud implements Initializable {
                             "--log-sql-create=" + Config.TMPFILE + " " + url);
                 }
             }
-            sqlLiteKargatu();
-            datuBaseaEguneratu();
-            deleteFile();
             BufferedReader input =
                     new BufferedReader(new InputStreamReader(p.getInputStream()));
             while ((line = input.readLine()) != null) {
                 processes.add(line);
             }
             input.close();
+            sqlLiteKargatu();
+            datuBaseaEguneratu();
+            deleteFile();
         } catch (Exception err) {
             err.printStackTrace();
         }
-
         return processes;
     }
 
@@ -119,7 +114,7 @@ public class WhatWebKud implements Initializable {
         String target = CMSDBKud.getInstance().azkenengoTargetLortu();
         List<String> jadaTaulanDaude = CMSDBKud.getInstance().cmsTaulaTargetsLortu();
         if(jadaTaulanDaude.contains(target)){
-            CMSDBKud.getInstance().eguneratuData(target);
+            CMSDBKud.getInstance().eguneratuDatuak(target);
         }
         else{
             CMSDBKud.getInstance().gehituCMSBerria(target);

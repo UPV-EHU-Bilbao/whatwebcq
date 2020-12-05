@@ -39,7 +39,7 @@ public class ServerDBKud {
         Iterator<String> itr = targetak.iterator();
         while(itr.hasNext()) {
             eskaneatu = itr.next();
-            String query = "Select DISTINCT target, string FROM targets t, scans s\n" +
+            String query = "SELECT DISTINCT target, string, MAX(s.scan_id) AS id FROM targets t, scans s\n" +
                     "WHERE t.target_id=s.target_id AND s.plugin_id=268 AND t.target LIKE \"%" + eskaneatu + "%\"";
             DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
             ResultSet rs = dbKudeatzaile.execSQL(query);

@@ -102,7 +102,4 @@ public class Main extends Application {
         sceneHasiera=new Scene(hasieraUI);
     }
 
-    /*private void sortuFitxategia(){
-        File tempFile = new File(Config.TMPFILE);
-    }*/
 }
