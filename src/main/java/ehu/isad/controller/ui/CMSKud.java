@@ -67,9 +67,8 @@ public class CMSKud implements Initializable {
         tcVersion.setCellValueFactory(new PropertyValueFactory<>("version"));
         tcLastUpdated.setCellValueFactory(new PropertyValueFactory<>("lastUpdated"));
 
-        txtUrl.setOnKeyPressed(o->
-                this.addTextFilter()
-        );
+        this.addTextFilter();
+
 
     }
 
