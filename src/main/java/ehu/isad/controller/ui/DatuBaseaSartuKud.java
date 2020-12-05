@@ -29,14 +29,13 @@ public class DatuBaseaSartuKud implements Initializable {
 
     @FXML
     void onClick(ActionEvent event) throws IOException {
-        mainApp.hasieraSceneJarri();
-        /*if(begiratuDatuBaserikDagoen(tfPath.getText())) {
+        if(begiratuDatuBaserikDagoen(tfPath.getText())) {
             whatwebfxEditatu(tfPath.getText());
             mainApp.hasieraSceneJarri();
         }
         else{
             lblWarning.setText("Sartu duzun path-ean ez da existitzen datu baserik mesedez saia zaitez berriro");
-        }*/
+        }
     }
 
     public DatuBaseaSartuKud(){
@@ -60,7 +59,7 @@ public class DatuBaseaSartuKud implements Initializable {
     }
 
     private void whatwebfxSortu() throws IOException {
-        String db = System.getProperty("user.home")+"/"+".whatwebfx";
+        String db = System.getProperty("user.home")+"/.whatwebfx.properties";
         File tempFile = new File(db);
         if(!tempFile.exists()){
             tempFile.createNewFile();
@@ -68,7 +67,7 @@ public class DatuBaseaSartuKud implements Initializable {
     }
 
     private void whatwebfxEditatu(String path) throws IOException {
-        String db = System.getProperty("user.home")+"/"+".whatwebfx";
+        String db = System.getProperty("user.home")+"/.whatwebfx.properties";
         FileWriter myWriter = new FileWriter(db);
         myWriter.write("dbpath="+path+"\n" +
                 "tmpDir=/tmp/");
