@@ -63,6 +63,7 @@ public class DBKudeatzaile {
         InputStream in = null;
 
         try {
+            System.out.println(System.getProperty("user.home")+"/"+".whatwebfx");
             in = this.getClass().getResourceAsStream(System.getProperty("user.home")+"/"+".whatwebfx");
             properties = new Properties();
             properties.load(in);
