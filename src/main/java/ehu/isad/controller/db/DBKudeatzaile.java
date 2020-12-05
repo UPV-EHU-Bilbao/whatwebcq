@@ -63,7 +63,7 @@ public class DBKudeatzaile {
         InputStream in = null;
 
         try {
-            in = this.getClass().getResourceAsStream(System.getProperty("user.home")+"/"+".whatwebfx");
+            in = this.getClass().getResourceAsStream("/setup.properties");
             properties = new Properties();
             properties.load(in);
         } catch (IOException e) {

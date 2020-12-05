@@ -29,13 +29,14 @@ public class DatuBaseaSartuKud implements Initializable {
 
     @FXML
     void onClick(ActionEvent event) throws IOException {
-        if(begiratuDatuBaserikDagoen(tfPath.getText())) {
+        mainApp.hasieraSceneJarri();
+        /*if(begiratuDatuBaserikDagoen(tfPath.getText())) {
             whatwebfxEditatu(tfPath.getText());
             mainApp.hasieraSceneJarri();
         }
         else{
             lblWarning.setText("Sartu duzun path-ean ez da existitzen datu baserik mesedez saia zaitez berriro");
-        }
+        }*/
     }
 
     public DatuBaseaSartuKud(){
