@@ -112,7 +112,7 @@ public class CMSKud implements Initializable {
 
     @Override
     public void initialize(java.net.URL location, ResourceBundle resources) {
-        cmbCombo.getItems().addAll("WordPress","Drupal","Joomla");
+        cmbCombo.getItems().addAll("","WordPress","Drupal","Joomla");
         cmbCombo.getSelectionModel().selectFirst();
     }
 
