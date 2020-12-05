@@ -1,9 +1,6 @@
 package ehu.isad;
 
-import ehu.isad.controller.ui.ServerKud;
-import ehu.isad.controller.ui.WhatWebKud;
-import ehu.isad.controller.ui.HasieraKud;
-import ehu.isad.controller.ui.CMSKud;
+import ehu.isad.controller.ui.*;
 import ehu.isad.utils.Config;
 import ehu.isad.utils.Utils;
 import javafx.application.Application;
@@ -24,11 +21,14 @@ public class Main extends Application {
 
     private Stage stage;
     private Scene sceneHasiera;
+    private Scene sceneDatuBaseaSartu;
     private Parent hasieraUI;
+    private Parent datuBaseaSartuUI;
     private HasieraKud hasieraKud;
     private WhatWebKud whatWebKud;
     private ServerKud serverKud;
     private CMSKud CMSKud;
+    private DatuBaseaSartuKud datuBaseaSartuKud;
     private double xOffset = 0;
     private double yOffset = 0;
 
@@ -39,7 +39,7 @@ public class Main extends Application {
         pantailakKargatu();
 
         leihoaMugitu();
-        stage.setScene(sceneHasiera);
+        stage.setScene(sceneDatuBaseaSartu);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
     }
@@ -69,11 +69,15 @@ public class Main extends Application {
 
     private void pantailakKargatu() throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/hasiera.fxml"));
+        FXMLLoader loaderDatuBase = new FXMLLoader(getClass().getResource("/datuBaseaSartu.fxml"));
+        datuBaseaSartuKud = new DatuBaseaSartuKud(this); //  setMain() metodoa ekidituz
+
+        FXMLLoader loaderHasiera = new FXMLLoader(getClass().getResource("/hasiera.fxml"));
         hasieraKud = new HasieraKud(this); //  setMain() metodoa ekidituz
         whatWebKud = new WhatWebKud();
         serverKud = new ServerKud();
         CMSKud = new CMSKud();
+
 
         Callback<Class<?>, Object> controllerFactory = type -> {
             if (type == HasieraKud.class) {
@@ -82,6 +86,9 @@ public class Main extends Application {
                 return whatWebKud;
             } else if (type == CMSKud.class) {
                 return CMSKud;
+            }
+            else if(type == DatuBaseaSartuKud.class){
+                return datuBaseaSartuKud;
             }
             else if(type == ServerKud.class){
                 return serverKud;
@@ -97,9 +104,19 @@ public class Main extends Application {
             }
         };
 
-        loader.setControllerFactory(controllerFactory);
-        hasieraUI = (Parent) loader.load();
+        loaderDatuBase.setControllerFactory(controllerFactory);
+        datuBaseaSartuUI = (Parent) loaderDatuBase.load();
+        sceneDatuBaseaSartu=new Scene(datuBaseaSartuUI);
+
+
+        loaderHasiera.setControllerFactory(controllerFactory);
+        hasieraUI = (Parent) loaderHasiera.load();
         sceneHasiera=new Scene(hasieraUI);
+    }
+
+    public void hasieraSceneJarri(){
+        stage.setScene(sceneHasiera);
+        stage.show();
     }
 
 }

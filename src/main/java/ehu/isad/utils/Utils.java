@@ -9,10 +9,10 @@ import java.util.Properties;
 
 public class Utils {
 
-    public static Properties lortuEzarpenak()  {
+    public static Properties lortuEzarpenak() throws IOException {
         Properties properties = null;
 
-        try (InputStream in = Utils.class.getResourceAsStream("/setup.properties")) {
+        try (InputStream in = Utils.class.getResourceAsStream(System.getProperty("user.home")+"/"+".whatwebfx")){
             properties = new Properties();
             properties.load(in);
 
