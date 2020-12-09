@@ -7,6 +7,9 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.*;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 public class SplashKud implements Initializable {
@@ -35,11 +38,24 @@ public class SplashKud implements Initializable {
             return false;
         }
     }
+    private void beharDirenFileSortu() throws IOException {
+        Path path = Paths.get(System.getProperty("user.home")+File.separator+".whatwebfx");
+        Files.createDirectory(path);
+
+    }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.apPane.setStyle("-fx-background-color: transparent;");
+        if(!begiratuDatuBaserikDagoen(System.getProperty("user.home")+File.separator+"whatweb.sqlite")){
+            try {
+                beharDirenFileSortu();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
 }
