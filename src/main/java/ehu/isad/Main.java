@@ -51,12 +51,12 @@ public class Main extends Application {
         sceneSplash.setFill(Color.TRANSPARENT);
         stageSplash.show();
 
-        FadeTransition fadeIn = new FadeTransition(Duration.seconds(1), splashKud.getApPane());
-        fadeIn.setFromValue(0);
-        fadeIn.setToValue(1);
-        fadeIn.setCycleCount(1);
+        FadeTransition fadeInSplash = new FadeTransition(Duration.seconds(1), splashKud.getApPane());
+        fadeInSplash.setFromValue(0);
+        fadeInSplash.setToValue(1);
+        fadeInSplash.setCycleCount(1);
 
-        fadeIn.play();
+        fadeInSplash.play();
 
         Runnable task = () -> {
             try {
@@ -75,7 +75,6 @@ public class Main extends Application {
 
         Thread thread = new Thread(task);
         thread.start();
-
         leihoaMugitu();
 
     }
