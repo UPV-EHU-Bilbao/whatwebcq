@@ -90,6 +90,14 @@ public class WhatWebKud implements Initializable {
                 p = Runtime.getRuntime().exec
                         (System.getenv("windir") + "\\system32\\" + "tasklist.exe");
 
+                if (datuBaseaSortutaDago()) {
+                    p = Runtime.getRuntime().exec("wsl whatweb --color=never " +
+                            "--log-sql=" + Config.TMPFILE + " " + url);
+                }else {
+                    p = Runtime.getRuntime().exec("wsl whatweb --color=never " +
+                            "--log-sql-create=" + Config.TMPFILE + " " + url);
+                }
+
             } else {
                 if (datuBaseaSortutaDago()) {
                     p = Runtime.getRuntime().exec("whatweb --color=never " +
