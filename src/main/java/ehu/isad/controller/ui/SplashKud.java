@@ -1,6 +1,7 @@
 package ehu.isad.controller.ui;
 
 import ehu.isad.Main;
+import ehu.isad.utils.Config;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
@@ -42,13 +43,20 @@ public class SplashKud implements Initializable {
         Path path = Paths.get(System.getProperty("user.home")+File.separator+".whatwebfx");
         Files.createDirectory(path);
 
+        if (System.getProperty("os.name").toLowerCase().contains("win"))
+            Runtime.getRuntime().exec("wsl whatweb --log-sql-create=/home/user/.whatwebfx/whatweb.sqlite");
+        else{
+            Runtime.getRuntime().exec("whatweb --log-sql-create=/home/user/.whatwebfx/whatweb.sqlite");
+        }
+
+
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.apPane.setStyle("-fx-background-color: transparent;");
-        if(!begiratuDatuBaserikDagoen(System.getProperty("user.home")+File.separator+"whatweb.sqlite")){
+        if(!begiratuDatuBaserikDagoen(System.getProperty("user.home")+File.separator+".whatwebfx"+File.separator+"whatweb.sqlite")){
             try {
                 beharDirenFileSortu();
             } catch (IOException e) {

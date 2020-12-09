@@ -22,6 +22,6 @@ public class Config {
 
     private Config() throws IOException {
         TMPFILE = File.separator+"tmp"+File.separator;
-        DBPATH = System.getProperty("user.home")+File.separator+"whatweb.sqlite";
+        DBPATH = System.getProperty("user.home")+File.separator+".whatwebfx"+File.separator+"whatweb.sqlite";
     }
 }
