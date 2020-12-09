@@ -20,6 +20,6 @@ public class Config {
 
     private Config() throws IOException {
         Properties properties=Utils.lortuEzarpenak();
-        TMPFILE = properties.get("tmpDir")+INSERT;
+        TMPFILE =
     }
 }

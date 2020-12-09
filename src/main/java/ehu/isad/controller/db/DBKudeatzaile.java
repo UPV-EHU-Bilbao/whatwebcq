@@ -63,7 +63,7 @@ public class DBKudeatzaile {
         InputStream in = null;
 
         try {
-            in = this.getClass().getResourceAsStream("/setup.properties");
+            in = this.getClass().getResourceAsStream(System.getProperty("user.home")+"whatweb.sqlite");
             properties = new Properties();
             properties.load(in);
         } catch (IOException e) {
