@@ -3,12 +3,14 @@ package ehu.isad.controller.ui;
 import ehu.isad.Main;
 import ehu.isad.utils.Config;
 import ehu.isad.utils.Utils;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import org.w3c.dom.Text;
 
 import java.io.*;
@@ -16,31 +18,19 @@ import java.net.URL;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
-public class DatuBaseaSartuKud implements Initializable {
+public class SplashKud implements Initializable {
 
     @FXML
-    private TextField tfPath;
+    private AnchorPane apPane;
 
-    @FXML
-    private Label lblWarning;
-
-    @FXML
-    private Button btnBotoia;
-
-    @FXML
-    void onClick(ActionEvent event) throws IOException {
-        mainApp.hasieraSceneJarri();
-        /*if(begiratuDatuBaserikDagoen(tfPath.getText())) {
-            whatwebfxEditatu(tfPath.getText());
-            mainApp.hasieraSceneJarri();
-        }
-        else{
-            lblWarning.setText("Sartu duzun path-ean ez da existitzen datu baserik mesedez saia zaitez berriro");
-        }*/
+    public SplashKud(){
+        System.out.println("splash");
     }
 
-    public DatuBaseaSartuKud(){
-        System.out.println("datuBase");
+    private Main mainApp;
+
+    public SplashKud(Main mainApp) {
+        this.mainApp = mainApp;
     }
 
     private boolean begiratuDatuBaserikDagoen(String path){
@@ -51,12 +41,6 @@ public class DatuBaseaSartuKud implements Initializable {
         else{
             return false;
         }
-    }
-
-    private Main mainApp;
-
-    public DatuBaseaSartuKud(Main mainApp) {
-        this.mainApp = mainApp;
     }
 
     private void whatwebfxSortu() throws IOException {
@@ -76,13 +60,10 @@ public class DatuBaseaSartuKud implements Initializable {
 
     }
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
-            whatwebfxSortu();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.apPane.setStyle("-fx-background-color: transparent;");
     }
 
 }

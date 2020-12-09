@@ -87,8 +87,6 @@ public class WhatWebKud implements Initializable {
             String line;
             Process p = null;
             if (System.getProperty("os.name").toLowerCase().contains("win")) {
-                p = Runtime.getRuntime().exec
-                        (System.getenv("windir") + "\\system32\\" + "tasklist.exe");
 
                 if (datuBaseaSortutaDago()) {
                     p = Runtime.getRuntime().exec("wsl whatweb --color=never " +

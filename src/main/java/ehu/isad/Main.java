@@ -1,52 +1,76 @@
 package ehu.isad;
 
 import ehu.isad.controller.ui.*;
-import ehu.isad.utils.Config;
-import ehu.isad.utils.Utils;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
-import java.io.File;
 import java.io.IOException;
 
 
 public class Main extends Application {
 
-    private Stage stage;
+    private Stage stageHasiera;
+    private Stage stageSplash;
     private Scene sceneHasiera;
-    private Scene sceneDatuBaseaSartu;
+    private Scene sceneSplash;
     private Parent hasieraUI;
-    private Parent datuBaseaSartuUI;
+    private Parent splashUI;
     private HasieraKud hasieraKud;
     private WhatWebKud whatWebKud;
     private ServerKud serverKud;
     private CMSKud CMSKud;
-    private DatuBaseaSartuKud datuBaseaSartuKud;
+    private SplashKud splashKud;
     private double xOffset = 0;
     private double yOffset = 0;
 
+
+
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //sortuFitxategia();
-        stage = primaryStage;
+
+
         pantailakKargatu();
 
+        stageSplash = new Stage();
+        stageSplash.setScene(sceneSplash);
+        stageSplash.initStyle(StageStyle.TRANSPARENT);
+        sceneSplash.setFill(Color.TRANSPARENT);
+        stageSplash.show();
+
+        Runnable task = () -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Platform.runLater(() -> {
+                stageSplash.hide();
+                stageHasiera = primaryStage;
+                stageHasiera.setScene(sceneHasiera);
+                stageHasiera.initStyle(StageStyle.UNDECORATED);
+                stageHasiera.show();
+            });
+        };
+
+        Thread thread = new Thread(task);
+        thread.start();
+
         leihoaMugitu();
-        stage.setScene(sceneDatuBaseaSartu);
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.show();
+
     }
 
+
     private void leihoaMugitu() throws IOException {
-        //you can use underdecorated or transparent.
-        stage.initStyle(StageStyle.TRANSPARENT);
 
         //grab your root here
         hasieraUI.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -61,16 +85,16 @@ public class Main extends Application {
         hasieraUI.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                stage.setX(event.getScreenX() - xOffset);
-                stage.setY(event.getScreenY() - yOffset);
+                stageHasiera.setX(event.getScreenX() - xOffset);
+                stageHasiera.setY(event.getScreenY() - yOffset);
             }
         });
     }
 
     private void pantailakKargatu() throws IOException {
 
-        FXMLLoader loaderDatuBase = new FXMLLoader(getClass().getResource("/datuBaseaSartu.fxml"));
-        datuBaseaSartuKud = new DatuBaseaSartuKud(this); //  setMain() metodoa ekidituz
+        FXMLLoader loaderSplash = new FXMLLoader(getClass().getResource("/splash.fxml"));
+        splashKud = new SplashKud(this); //  setMain() metodoa ekidituz
 
         FXMLLoader loaderHasiera = new FXMLLoader(getClass().getResource("/hasiera.fxml"));
         hasieraKud = new HasieraKud(this); //  setMain() metodoa ekidituz
@@ -87,8 +111,8 @@ public class Main extends Application {
             } else if (type == CMSKud.class) {
                 return CMSKud;
             }
-            else if(type == DatuBaseaSartuKud.class){
-                return datuBaseaSartuKud;
+            else if(type == SplashKud.class){
+                return splashKud;
             }
             else if(type == ServerKud.class){
                 return serverKud;
@@ -104,19 +128,14 @@ public class Main extends Application {
             }
         };
 
-        loaderDatuBase.setControllerFactory(controllerFactory);
-        datuBaseaSartuUI = (Parent) loaderDatuBase.load();
-        sceneDatuBaseaSartu=new Scene(datuBaseaSartuUI);
-
+        loaderSplash.setControllerFactory(controllerFactory);
+        splashUI = (Parent) loaderSplash.load();
+        sceneSplash=new Scene(splashUI);
 
         loaderHasiera.setControllerFactory(controllerFactory);
         hasieraUI = (Parent) loaderHasiera.load();
         sceneHasiera=new Scene(hasieraUI);
     }
 
-    public void hasieraSceneJarri(){
-        stage.setScene(sceneHasiera);
-        stage.show();
-    }
 
 }
