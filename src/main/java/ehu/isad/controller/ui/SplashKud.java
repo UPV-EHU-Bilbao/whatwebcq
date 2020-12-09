@@ -33,6 +33,8 @@ public class SplashKud implements Initializable {
         this.mainApp = mainApp;
     }
 
+    public AnchorPane getApPane(){return this.apPane;}
+
     private boolean begiratuDatuBaserikDagoen(String path){
         File tempFile = new File(path);
         if(tempFile.exists()){

@@ -1,17 +1,21 @@
 package ehu.isad;
 
 import ehu.isad.controller.ui.*;
+import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import javafx.util.Duration;
 
 import java.io.IOException;
 
@@ -47,9 +51,16 @@ public class Main extends Application {
         sceneSplash.setFill(Color.TRANSPARENT);
         stageSplash.show();
 
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(1), splashKud.getApPane());
+        fadeIn.setFromValue(0);
+        fadeIn.setToValue(1);
+        fadeIn.setCycleCount(1);
+
+        fadeIn.play();
+
         Runnable task = () -> {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -137,5 +148,4 @@ public class Main extends Application {
         sceneHasiera=new Scene(hasieraUI);
     }
 
-
-}
+    }
