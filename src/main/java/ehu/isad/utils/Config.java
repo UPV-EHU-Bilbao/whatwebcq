@@ -1,5 +1,6 @@
 package ehu.isad.utils;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -7,6 +8,7 @@ public class Config {
 
     public static final String INSERT = "insert.sql";
     public static String TMPFILE;
+    public static String DBPATH;
 
     private static Config config;
 
@@ -19,7 +21,7 @@ public class Config {
     }
 
     private Config() throws IOException {
-        Properties properties=Utils.lortuEzarpenak();
-        TMPFILE =
+        TMPFILE = File.separator+"tmp"+File.separator;
+        DBPATH = System.getProperty("user.home")+File.separator+"whatweb.sqlite";
     }
 }

@@ -3,7 +3,6 @@ package ehu.isad.controller.ui;
 import ehu.isad.controller.db.CMSDBKud;
 import ehu.isad.controller.db.WhatWebDBKud;
 import ehu.isad.utils.Config;
-import ehu.isad.utils.Utils;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -53,7 +52,6 @@ public class WhatWebKud implements Initializable {
         });
 
         taskThread.start();
-
 
     }
 
