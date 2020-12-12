@@ -9,8 +9,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -42,40 +44,65 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-
         pantailakKargatu();
+        splashLeihoaJarri();
 
-        splashLeihoa();
-
-        Runnable task = () -> {
+        if(!splashKud.instalatutaDago()){
             try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
+                splashKud.beharDirenFileSortu();
+                splashKud.datuBaseaSortu();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
-            Platform.runLater(() -> {
-                stageSplash.hide();
-                stageHasiera = primaryStage;
-                stageHasiera.setScene(sceneHasiera);
-                stageHasiera.initStyle(StageStyle.UNDECORATED);
-                stageHasiera.show();
-            });
-        };
+            Runnable taskInstalatuGabe = () -> {
+                try {
+                    Thread.sleep(198000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Platform.runLater(() -> {
+                    stageSplash.hide();
+                    stageHasiera = primaryStage;
+                    stageHasiera.setScene(sceneHasiera);
+                    stageHasiera.initStyle(StageStyle.UNDECORATED);
+                    stageHasiera.show();
+                });
+            };
+            Thread threadInstalatuGabe = new Thread(taskInstalatuGabe);
+            threadInstalatuGabe.start();
+        }
 
-        Thread thread = new Thread(task);
-        thread.start();
+        else{
+            Runnable taskInstalatuta = () -> {
+                try {
+                    Thread.sleep(198000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Platform.runLater(() -> {
+                    stageSplash.hide();
+                    stageHasiera = primaryStage;
+                    stageHasiera.setScene(sceneHasiera);
+                    stageHasiera.initStyle(StageStyle.UNDECORATED);
+                    stageHasiera.show();
+                });
+            };
+            Thread threadInstalatuta = new Thread(taskInstalatuta);
+            threadInstalatuta.start();
+        }
         leihoaMugitu();
 
     }
 
-    public void splashLeihoa(){
+    public void splashLeihoaJarri() throws IOException {
+
         stageSplash = new Stage();
         stageSplash.setScene(sceneSplash);
         stageSplash.initStyle(StageStyle.TRANSPARENT);
         sceneSplash.setFill(Color.TRANSPARENT);
         stageSplash.show();
 
-        FadeTransition fadeInSplash = new FadeTransition(Duration.seconds(1), splashKud.getApPane());
+        FadeTransition fadeInSplash = new FadeTransition(Duration.seconds(3), splashKud.getApPane());
         fadeInSplash.setFromValue(0);
         fadeInSplash.setToValue(1);
         fadeInSplash.setCycleCount(1);
@@ -105,7 +132,8 @@ public class Main extends Application {
         });
     }
 
-    private void pantailakKargatu() throws IOException {
+
+    public void pantailakKargatu() throws IOException {
 
         FXMLLoader loaderSplash = new FXMLLoader(getClass().getResource("/splash.fxml"));
         splashKud = new SplashKud(this); //  setMain() metodoa ekidituz

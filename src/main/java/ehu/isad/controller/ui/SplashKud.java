@@ -2,6 +2,7 @@ package ehu.isad.controller.ui;
 
 import ehu.isad.Main;
 import ehu.isad.controller.db.WhatWebDBKud;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
@@ -30,16 +31,8 @@ public class SplashKud implements Initializable {
 
     public AnchorPane getApPane(){return this.apPane;}
 
-    /*private boolean begiratuDatuBaserikDagoen(String path){
-        File tempFile = new File(path);
-        if(tempFile.exists()){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }*/
-    private void beharDirenFileSortu() throws IOException {
+
+    public void beharDirenFileSortu() throws IOException {
         Path path = Paths.get(System.getProperty("user.home")+File.separator+".whatwebfx");
         Files.createDirectory(path);
         if (System.getProperty("os.name").toLowerCase().contains("win"))
@@ -51,6 +44,7 @@ public class SplashKud implements Initializable {
         File datubasea = new File(System.getProperty("user.home")+File.separator+".whatwebfx"+File.separator+"whatweb.sqlite");
         datubasea.createNewFile();
 
+
         //Unistaller
         String db = System.getProperty("user.home")+File.separator+".whatwebfx"+File.separator+"unistaller.sh";
         FileWriter myWriter = new FileWriter(db);
@@ -60,19 +54,20 @@ public class SplashKud implements Initializable {
         myWriter.close();
     }
 
-    private boolean instalatutaDago(){
+    public boolean instalatutaDago(){
         String path = System.getProperty("user.home")+File.separator+".whatwebfx";
         File karpeta = new File(path);
         return karpeta.exists();
     }
 
-    private void datuBaseaSortu() throws IOException {
+    public void datuBaseaSortu() throws IOException {
         try{
             Thread.sleep(3000);
         }
         catch(Throwable t){
             t.printStackTrace();
         }
+
         FileInputStream fstream = new FileInputStream(System.getProperty("user.home")+File.separator+".whatwebfx"+File.separator+"whatweb.txt");
         BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
         String linea="";
@@ -98,19 +93,8 @@ public class SplashKud implements Initializable {
         ezabatu.delete();
     }
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.apPane.setStyle("-fx-background-color: transparent;");
-        if(!instalatutaDago()){
-            try {
-                beharDirenFileSortu();
-                datuBaseaSortu();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
     }
 
 }

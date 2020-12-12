@@ -46,7 +46,6 @@ public class WhatWebKud implements Initializable {
 
             Platform.runLater(() -> {
                 txtLog.setText(emaitza.toString());
-
             });
 
         });
