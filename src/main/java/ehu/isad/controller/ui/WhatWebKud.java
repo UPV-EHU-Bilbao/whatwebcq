@@ -29,6 +29,8 @@ public class WhatWebKud implements Initializable {
     @FXML
     private TextArea txtLog;
 
+    //onclick
+
     public void onClick(ActionEvent event) throws IOException, SQLException {
         Button btn = (Button) event.getSource();
         String newLine = System.getProperty("line.separator");
