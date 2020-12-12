@@ -20,6 +20,7 @@ import javafx.util.Callback;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.time.Year;
 
 
 public class Main extends Application {
@@ -47,49 +48,45 @@ public class Main extends Application {
         pantailakKargatu();
         splashLeihoaJarri();
 
-        if(!splashKud.instalatutaDago()){
-            try {
-                splashKud.beharDirenFileSortu();
-                splashKud.datuBaseaSortu();
-            } catch (IOException e) {
-                e.printStackTrace();
+        Thread kargatu = new Thread(){
+            public void run(){
+                try {
+                    splashKud.beharDirenFileSortu();
+                    splashKud.datuBaseaSortu();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-            Runnable taskInstalatuGabe = () -> {
-                try {
-                    Thread.sleep(198000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Platform.runLater(() -> {
-                    stageSplash.hide();
-                    stageHasiera = primaryStage;
-                    stageHasiera.setScene(sceneHasiera);
-                    stageHasiera.initStyle(StageStyle.UNDECORATED);
-                    stageHasiera.show();
-                });
-            };
-            Thread threadInstalatuGabe = new Thread(taskInstalatuGabe);
-            threadInstalatuGabe.start();
-        }
+        };
 
-        else{
-            Runnable taskInstalatuta = () -> {
+        Runnable task = () -> {
+            if (splashKud.instalatutaDago()){
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            else{
                 try {
                     Thread.sleep(198000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                Platform.runLater(() -> {
-                    stageSplash.hide();
-                    stageHasiera = primaryStage;
-                    stageHasiera.setScene(sceneHasiera);
-                    stageHasiera.initStyle(StageStyle.UNDECORATED);
-                    stageHasiera.show();
-                });
-            };
-            Thread threadInstalatuta = new Thread(taskInstalatuta);
-            threadInstalatuta.start();
-        }
+            }
+
+            Platform.runLater(() -> {
+                stageSplash.hide();
+                stageHasiera = primaryStage;
+                stageHasiera.setScene(sceneHasiera);
+                stageHasiera.initStyle(StageStyle.UNDECORATED);
+                stageHasiera.show();
+            });
+        };
+        Thread thread = new Thread(task);
+        thread.start();
+        kargatu.start();
+
         leihoaMugitu();
 
     }
