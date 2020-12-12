@@ -43,13 +43,20 @@ public class SplashKud implements Initializable {
         Path path = Paths.get(System.getProperty("user.home")+File.separator+".whatwebfx");
         Files.createDirectory(path);
 
+        //Datu basea sortzeko
         if (System.getProperty("os.name").toLowerCase().contains("win"))
             Runtime.getRuntime().exec("wsl whatweb --log-sql-create=/home/user/.whatwebfx/whatweb.sqlite");
         else{
             Runtime.getRuntime().exec("whatweb --log-sql-create=/home/user/.whatwebfx/whatweb.sqlite");
         }
 
-
+        //Unistaller
+        String db = System.getProperty("user.home")+File.separator+".whatwebfx"+File.separator+"unistaller.sh";
+        FileWriter myWriter = new FileWriter(db);
+        myWriter.write("#!/bin/bash"+"\n" +
+                "sudo apt remove whatwebfx"+"\n"+
+                "sudo rm -r "+System.getProperty("user.home")+File.separator+".whatwebfx");
+        myWriter.close();
     }
 
 
