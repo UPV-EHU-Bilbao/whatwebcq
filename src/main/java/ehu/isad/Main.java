@@ -51,8 +51,10 @@ public class Main extends Application {
         Thread kargatu = new Thread(){
             public void run(){
                 try {
-                    splashKud.beharDirenFileSortu();
-                    splashKud.datuBaseaSortu();
+                    if (!splashKud.instalatutaDago()){
+                        splashKud.beharDirenFileSortu();
+                        splashKud.datuBaseaSortu();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
