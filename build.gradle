@@ -85,7 +85,7 @@ jlink {
         }
         else if(org.gradle.internal.os.OperatingSystem.current().linux){
             installerType = "deb"
-            jpackageHome = "/usr/lib/jvm/jdk-14.0.2"
+            //jpackageHome = "/usr/lib/jvm/jdk-14.0.2"
             installerOptions = ['--linux-shortcut']
         }
         else if(org.gradle.internal.os.OperatingSystem.current().macOsX){
