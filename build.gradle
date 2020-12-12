@@ -90,7 +90,6 @@ jlink {
         }
         else if(org.gradle.internal.os.OperatingSystem.current().macOsX){
             installerType = "dmg"
-            jpackageHome = "/usr/lib/jvm/jdk-14.0.2"
         }
     }
 }
