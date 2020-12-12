@@ -57,13 +57,13 @@ public class WhatWebKud implements Initializable {
 
 
     private void deleteFile() throws IOException {
-        File tempFile = new File(Config.TMPFILE);
+        File tempFile = new File(Config.TMPFILE+Config.INSERT);
         tempFile.delete();
     }
 
     //Transforma los ignore en or ignore
     public void sqlLiteKargatu() throws IOException, SQLException {
-        FileInputStream fstream = new FileInputStream(Config.TMPFILE);
+        FileInputStream fstream = new FileInputStream(Config.TMPFILE+Config.INSERT);
         BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
         String linea="";
 
@@ -84,23 +84,11 @@ public class WhatWebKud implements Initializable {
             String line;
             Process p = null;
             if (System.getProperty("os.name").toLowerCase().contains("win")) {
-
-                if (datuBaseaSortutaDago()) {
                     p = Runtime.getRuntime().exec("wsl whatweb --color=never " +
-                            "--log-sql=" + Config.TMPFILE + " " + url);
-                }else {
-                    p = Runtime.getRuntime().exec("wsl whatweb --color=never " +
-                            "--log-sql-create=" + Config.TMPFILE + " " + url);
-                }
-
+                            "--log-sql=" + Config.TMPFILE+Config.INSERT + " " + url);
             } else {
-                if (datuBaseaSortutaDago()) {
                     p = Runtime.getRuntime().exec("whatweb --color=never " +
-                            "--log-sql=" + Config.TMPFILE + " " + url);
-                }else {
-                    p = Runtime.getRuntime().exec("whatweb --color=never " +
-                            "--log-sql-create=" + Config.TMPFILE + " " + url);
-                }
+                            "--log-sql=" + Config.TMPFILE+Config.INSERT + " " + url);
             }
             BufferedReader input =
                     new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -128,9 +116,9 @@ public class WhatWebKud implements Initializable {
             CMSDBKud.getInstance().gehituCMSBerria(target);
         }
     }
-    private boolean datuBaseaSortutaDago() throws SQLException {
+    /*private boolean datuBaseaSortutaDago() throws SQLException {
         return WhatWebDBKud.getInstance().datuBaseaSortutaDago();
-    }
+    }*/
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

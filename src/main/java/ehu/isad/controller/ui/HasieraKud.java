@@ -82,9 +82,9 @@ public class HasieraKud implements Initializable {
     public void irten() {
         Stage stage = (Stage) btnIrten.getScene().getWindow();
         stage.close();
-        String db = System.getProperty("user.home")+"/"+".whatwebfx";
+        /*String db = System.getProperty("user.home")+"/"+".whatwebfx";
         File tempFile = new File(db);
-        tempFile.delete();
+        tempFile.delete();*/
     }
 
     public HasieraKud(){

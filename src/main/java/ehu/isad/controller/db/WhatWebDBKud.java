@@ -17,11 +17,11 @@ public class WhatWebDBKud {
         dbKudeatzaile.execSQL(linea);
     }
 
-    public boolean datuBaseaSortutaDago() throws SQLException {
+    /*public boolean datuBaseaSortutaDago() throws SQLException {
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         String query = "SELECT MAX(plugin_id) AS zenbat FROM plugins";
         ResultSet rs = dbKudeatzaile.execSQL(query);
         return (rs.getInt("zenbat") > 1);
-    }
+    }*/
 
 }

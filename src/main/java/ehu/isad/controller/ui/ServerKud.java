@@ -46,8 +46,8 @@ public class ServerKud implements Initializable {
     public void aktualizatuLista() {
         //tvTaula.getItems().remove(0, tvTaula.getItems().size());
         List<String> targetak = ServerDBKud.getInstance().targetakLortu();
-        List<ehu.isad.model.Server> kargatzekoa = ServerDBKud.getInstance().serverLortu(targetak);
-        ObservableList<ehu.isad.model.Server> servers = FXCollections.observableArrayList(kargatzekoa);
+        List<Server> kargatzekoa = ServerDBKud.getInstance().serverLortu(targetak);
+        ObservableList<Server> servers = FXCollections.observableArrayList(kargatzekoa);
         tvTaula.setItems(servers);
         tcTarget.setCellValueFactory(new PropertyValueFactory<>("target"));
         tcServer.setCellValueFactory(new PropertyValueFactory<>("server"));

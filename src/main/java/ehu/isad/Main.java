@@ -45,18 +45,7 @@ public class Main extends Application {
 
         pantailakKargatu();
 
-        stageSplash = new Stage();
-        stageSplash.setScene(sceneSplash);
-        stageSplash.initStyle(StageStyle.TRANSPARENT);
-        sceneSplash.setFill(Color.TRANSPARENT);
-        stageSplash.show();
-
-        FadeTransition fadeInSplash = new FadeTransition(Duration.seconds(1), splashKud.getApPane());
-        fadeInSplash.setFromValue(0);
-        fadeInSplash.setToValue(1);
-        fadeInSplash.setCycleCount(1);
-
-        fadeInSplash.play();
+        splashLeihoa();
 
         Runnable task = () -> {
             try {
@@ -77,6 +66,21 @@ public class Main extends Application {
         thread.start();
         leihoaMugitu();
 
+    }
+
+    public void splashLeihoa(){
+        stageSplash = new Stage();
+        stageSplash.setScene(sceneSplash);
+        stageSplash.initStyle(StageStyle.TRANSPARENT);
+        sceneSplash.setFill(Color.TRANSPARENT);
+        stageSplash.show();
+
+        FadeTransition fadeInSplash = new FadeTransition(Duration.seconds(1), splashKud.getApPane());
+        fadeInSplash.setFromValue(0);
+        fadeInSplash.setToValue(1);
+        fadeInSplash.setCycleCount(1);
+
+        fadeInSplash.play();
     }
 
 

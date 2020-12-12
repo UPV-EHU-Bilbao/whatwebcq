@@ -2,6 +2,7 @@ package ehu.isad.controller.db;
 
 import ehu.isad.utils.Config;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.DriverManager;
@@ -60,7 +61,7 @@ public class DBKudeatzaile {
     private static DBKudeatzaile instantzia = new DBKudeatzaile();
 
     private DBKudeatzaile()  {
-        this.conOpen(Config.DBPATH);
+        this.conOpen(System.getProperty("user.home")+ File.separator+".whatwebfx"+File.separator+"whatweb.sqlite");
     }
 
     public static DBKudeatzaile getInstantzia() {
