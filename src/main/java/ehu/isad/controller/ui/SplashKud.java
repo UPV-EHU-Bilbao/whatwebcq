@@ -44,14 +44,6 @@ public class SplashKud implements Initializable {
         File datubasea = new File(System.getProperty("user.home")+File.separator+".whatwebfx"+File.separator+"whatweb.sqlite");
         datubasea.createNewFile();
 
-
-        //Unistaller
-        String db = System.getProperty("user.home")+File.separator+".whatwebfx"+File.separator+"unistaller.sh";
-        FileWriter myWriter = new FileWriter(db);
-        myWriter.write("#!/bin/bash"+"\n" +
-                "sudo apt remove whatwebfx"+"\n"+
-                "sudo rm -r "+System.getProperty("user.home")+File.separator+".whatwebfx");
-        myWriter.close();
     }
 
     public boolean instalatutaDago(){

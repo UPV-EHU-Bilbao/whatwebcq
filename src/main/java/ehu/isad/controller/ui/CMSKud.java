@@ -69,7 +69,6 @@ public class CMSKud implements Initializable {
 
         this.addTextFilter();
 
-
     }
 
     public void addTextFilter() {
