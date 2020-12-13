@@ -117,9 +117,6 @@ public class WhatWebKud implements Initializable {
             CMSDBKud.getInstance().gehituCMSBerria(target);
         }
     }
-    /*private boolean datuBaseaSortutaDago() throws SQLException {
-        return WhatWebDBKud.getInstance().datuBaseaSortutaDago();
-    }*/
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
