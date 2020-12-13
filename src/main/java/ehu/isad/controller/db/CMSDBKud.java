@@ -77,7 +77,7 @@ public class CMSDBKud {
                 "FROM scans s \n" +
                 "INNER JOIN targets t ON s.target_id=t.target_id\n" +
                 "INNER JOIN scans c ON t.target_id=c.target_id\n" +
-                "WHERE (c.plugin_id=192) AND (s.plugin_id=1152 OR s.plugin_id=132 OR s.plugin_id=337 OR s.plugin_id=72 OR s.plugin_id=241 OR s.plugin_id=283 OR s.plugin_id=315 OR s.plugin_id=1129 OR s.plugin_id=1419 OR s.plugin_id=131 OR s.plugin_id=88 OR s.plugin_id=824 OR s.plugin_id=822) AND t.target = \""+target+"\"";
+                "WHERE (c.plugin_id=192 or c.plugin_id=1299) AND (s.plugin_id=1152 OR s.plugin_id=132 OR s.plugin_id=337 OR s.plugin_id=72 OR s.plugin_id=241 OR s.plugin_id=283 OR s.plugin_id=315 OR s.plugin_id=1129 OR s.plugin_id=1419 OR s.plugin_id=131 OR s.plugin_id=88 OR s.plugin_id=824 OR s.plugin_id=822) AND t.target = \""+target+"\"";
         ResultSet rs = dbKudeatzaile.execSQL(lortuCMSAtributuak);
         String version="";
         String cms ="";
