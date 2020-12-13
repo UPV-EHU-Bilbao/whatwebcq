@@ -88,6 +88,15 @@ public class SplashKud implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.apPane.setStyle("-fx-background-color: transparent;");
+        if (!instalatutaDago()) {
+            try {
+                beharDirenFileSortu();
+                datuBaseaSortu();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }

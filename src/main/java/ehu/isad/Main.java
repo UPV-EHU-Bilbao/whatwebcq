@@ -42,41 +42,30 @@ public class Main extends Application {
 
 
 
-    @Override
     public void start(Stage primaryStage) throws Exception {
 
-        pantailakKargatu();
-        splashLeihoaJarri();
 
-        Thread kargatu = new Thread(){
-            public void run(){
-                try {
-                    if (!splashKud.instalatutaDago()){
-                        splashKud.beharDirenFileSortu();
-                        splashKud.datuBaseaSortu();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
+        pantailakKargatu();
+
+        stageSplash = new Stage();
+        stageSplash.setScene(sceneSplash);
+        stageSplash.initStyle(StageStyle.TRANSPARENT);
+        sceneSplash.setFill(Color.TRANSPARENT);
+        stageSplash.show();
+
+        FadeTransition fadeInSplash = new FadeTransition(Duration.seconds(1), splashKud.getApPane());
+        fadeInSplash.setFromValue(0);
+        fadeInSplash.setToValue(1);
+        fadeInSplash.setCycleCount(1);
+
+        fadeInSplash.play();
 
         Runnable task = () -> {
-            if (splashKud.instalatutaDago()){
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-            else{
-                try {
-                    Thread.sleep(198000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-
             Platform.runLater(() -> {
                 stageSplash.hide();
                 stageHasiera = primaryStage;
@@ -85,30 +74,12 @@ public class Main extends Application {
                 stageHasiera.show();
             });
         };
+
         Thread thread = new Thread(task);
         thread.start();
-        kargatu.start();
-
         leihoaMugitu();
 
     }
-
-    public void splashLeihoaJarri() throws IOException {
-
-        stageSplash = new Stage();
-        stageSplash.setScene(sceneSplash);
-        stageSplash.initStyle(StageStyle.TRANSPARENT);
-        sceneSplash.setFill(Color.TRANSPARENT);
-        stageSplash.show();
-
-        FadeTransition fadeInSplash = new FadeTransition(Duration.seconds(3), splashKud.getApPane());
-        fadeInSplash.setFromValue(0);
-        fadeInSplash.setToValue(1);
-        fadeInSplash.setCycleCount(1);
-
-        fadeInSplash.play();
-    }
-
 
     private void leihoaMugitu() throws IOException {
 
