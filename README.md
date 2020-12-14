@@ -1,11 +1,6 @@
-###############################
-__        ___           _ __        __   _
-\ \      / / |__   __ _| |\ \      / /__| |__
- \ \ /\ / /| '_ \ / _` | __\ \ /\ / / _ \ '_ \
-  \ V  V / | | | | (_| | |_ \ V  V /  __/ |_) |
-   \_/\_/  |_| |_|\__,_|\__| \_/\_/ \___|_.__/
 
-################################33
+![logo](https://user-images.githubusercontent.com/49266452/102135268-04974a00-3e58-11eb-898f-183bd2892471.png)
+
 
 Informazio Sistemen Analisia eta Diseinua ikasgaiko proiektua. 2020 urtean garatua. Whatweb aplikaziorako https://github.com/urbanadventurer/WhatWeb interfaze grafikoa sortu dugu erabiltzailea laguntzeko.
 
