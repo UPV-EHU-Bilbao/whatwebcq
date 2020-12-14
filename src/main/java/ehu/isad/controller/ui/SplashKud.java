@@ -38,9 +38,9 @@ public class SplashKud implements Initializable {
         Files.createDirectory(path);
 
         if (System.getProperty("os.name").toLowerCase().contains("win")) {
-            Runtime.getRuntime().exec("wsl wget https://raw.githubusercontent.com/Jasielprogramador/base_de_datos/master/whatweb.sqlite -O /home/arrosa/.whatwebfx/whatweb.sqlite");
+            Runtime.getRuntime().exec("wsl wget https://raw.githubusercontent.com/Jasielprogramador/base_de_datos/master/whatweb.sqlite -O "+System.getProperty("user.home")+".whatwebfx/whatweb.sqlite");
         } else {
-            Runtime.getRuntime().exec("wget https://raw.githubusercontent.com/Jasielprogramador/base_de_datos/master/whatweb.sqlite -O /home/arrosa/.whatwebfx/whatweb.sqlite");
+            Runtime.getRuntime().exec("wget https://raw.githubusercontent.com/Jasielprogramador/base_de_datos/master/whatweb.sqlite -O "+System.getProperty("user.home")+".whatwebfx/whatweb.sqlite");
         }
     }
 
