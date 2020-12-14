@@ -22,4 +22,4 @@ MacOS ->
 
 # Dokumentazioa
 
-Hemen aurkitu dezakezue proiektu honen [dokumentazioa](https://github.com/UPV-EHU-Bilbao/WhatWebVFX/blob/master/WhatWebFX_JonGondra_EmmaManna_JonQuintano.pdf). 
+Hemen aurkitu dezakezue proiektu honen [dokumentazioa](https://github.com/UPV-EHU-Bilb). 
