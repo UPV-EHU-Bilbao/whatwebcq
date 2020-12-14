@@ -17,7 +17,7 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="11.0" prefHeight="26.0" prefWidth="679.0" text="Tor is a network of virtual tunnels that allows you to improve your privacy and security on the Internet" textFill="WHITE" />
+            <Label layoutX="14.0" layoutY="11.0" prefHeight="26.0" prefWidth="679.0" text="Zure azken bilaketen emaitzak hemen ikusi ditzakezu:" textFill="WHITE" />
          </children>
       </Pane>
       <FontAwesomeIconView glyphName="SEARCH" layoutX="253.0" layoutY="224.0" />
