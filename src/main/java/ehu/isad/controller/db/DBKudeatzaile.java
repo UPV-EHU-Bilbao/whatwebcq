@@ -61,7 +61,7 @@ public class DBKudeatzaile {
     private static DBKudeatzaile instantzia = new DBKudeatzaile();
 
     private DBKudeatzaile()  {
-        this.conOpen(System.getProperty("user.home")+ File.separator+"whatweb.sqlite");
+        this.conOpen(Config.DBPATH);
     }
 
     public static DBKudeatzaile getInstantzia() {
