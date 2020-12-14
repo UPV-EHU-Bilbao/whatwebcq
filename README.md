@@ -1,7 +1,11 @@
-#\ \      / / |__   __ _| |\ \      / /__| |__
-# \ \ /\ / /| '_ \ / _` | __\ \ /\ / / _ \ '_ \
-#  \ V  V / | | | | (_| | |_ \ V  V /  __/ |_) |
-#   \_/\_/  |_| |_|\__,_|\__| \_/\_/ \___|_.__/
+###############################
+__        ___           _ __        __   _
+\ \      / / |__   __ _| |\ \      / /__| |__
+ \ \ /\ / /| '_ \ / _` | __\ \ /\ / / _ \ '_ \
+  \ V  V / | | | | (_| | |_ \ V  V /  __/ |_) |
+   \_/\_/  |_| |_|\__,_|\__| \_/\_/ \___|_.__/
+
+################################33
 
 Informazio Sistemen Analisia eta Diseinua ikasgaiko proiektua. 2020 urtean garatua. Whatweb aplikaziorako https://github.com/urbanadventurer/WhatWeb interfaze grafikoa sortu dugu erabiltzailea laguntzeko.
 
