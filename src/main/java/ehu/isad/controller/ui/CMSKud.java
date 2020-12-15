@@ -85,7 +85,7 @@ public class CMSKud implements Initializable {
         ));
         comboFiltroa.bind(Bindings.createObjectBinding(()->
                 webgune ->  cmbCombo.getValue().equals("") ||
-                        webgune.getVersion().toLowerCase().contains(cmbCombo.getValue().toLowerCase()),
+                        webgune.getCms().toLowerCase().contains(cmbCombo.getValue().toLowerCase()),
                         cmbCombo.valueProperty()
 
         ));
