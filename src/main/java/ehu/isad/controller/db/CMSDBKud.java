@@ -97,7 +97,7 @@ public class CMSDBKud {
     public List<Webgunea> cmsListaLortu() {
         List<Webgunea> emaitza = new ArrayList<>();
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
-        String query = "SELECT target, version, cms, lastUpdated FROM cms_taula ORDER BY lastUpdated DESC";
+        String query = "SELECT target, cms, version, lastUpdated FROM cms_taula ORDER BY lastUpdated DESC";
         ResultSet rs = dbKudeatzaile.execSQL(query);
         try{
             while(rs.next()) {
@@ -105,7 +105,7 @@ public class CMSDBKud {
                 String version = rs.getString("version");
                 String cms = rs.getString("cms");
                 String lastUpdated = rs.getString("lastUpdated");
-                Webgunea webgunea = new Webgunea(target,version,cms,lastUpdated);
+                Webgunea webgunea = new Webgunea(target,cms,version,lastUpdated);
                 emaitza.add(webgunea);
             }
         }catch(SQLException throwables) {
