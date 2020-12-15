@@ -34,6 +34,7 @@ public class SplashKud implements Initializable {
 
 
     public void beharDirenFileSortu() throws IOException {
+        //Fileak sortzen dizkizu
         Path path = Paths.get(System.getProperty("user.home")+File.separator+".whatwebfx");
         Files.createDirectory(path);
 
