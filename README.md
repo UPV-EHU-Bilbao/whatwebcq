@@ -35,5 +35,5 @@ Hemen aurkitu dezakezue proiektu honen [dokumentazioa](https://github.com/UPV-EH
 [Windows instalatzailea](https://drive.google.com/file/d/1oVu4Q4YRhxVe3oQChubVNVpwAyxu5n6J/view?usp=sharing)
 
 # Desinstalatzaileak
-[Desistalatzeko](https://github.com/UPV-EHU-Bilbao/whatwebcq/blob/master/unistaller.sh)
+[Unistaller](https://github.com/UPV-EHU-Bilbao/whatwebcq/blob/master/unistaller.sh)
 
