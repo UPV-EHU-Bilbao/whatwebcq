@@ -33,3 +33,6 @@ Hemen aurkitu dezakezue proiektu honen [dokumentazioa](https://github.com/UPV-EH
 [macOs instalatzailea](https://drive.google.com/file/d/1ZcE9uZkQgxD796B38WVcXEWhiF14i0bM/view?usp=sharing)
 
 [Windows instalatzailea](https://drive.google.com/file/d/1oVu4Q4YRhxVe3oQChubVNVpwAyxu5n6J/view?usp=sharing)
+
+# Desinstalatzaileak
+
