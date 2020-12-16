@@ -37,3 +37,5 @@ Hemen aurkitu dezakezue proiektu honen [dokumentazioa](https://github.com/UPV-EH
 # Desinstalatzaileak
 [Unistaller](https://github.com/UPV-EHU-Bilbao/whatwebcq/blob/master/unistaller.sh)
 
+Gure programa desistalatzeko mesedez exekuta ezazu bash scripten egindako programatxo hau (ez da birus bat)
+
