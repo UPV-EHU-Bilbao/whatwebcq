@@ -2,7 +2,9 @@
 ![logo](https://user-images.githubusercontent.com/49266452/102135268-04974a00-3e58-11eb-898f-183bd2892471.png)
 
 [Linux instalatzailea](https://drive.google.com/file/d/1r4v4f6hqFidjG7x8sXQOxi8NewWNPZDf/view?usp=sharing)
+
 [macOs instalatzailea](https://drive.google.com/file/d/1ZcE9uZkQgxD796B38WVcXEWhiF14i0bM/view?usp=sharing)
+
 [Windows instalatzailea](https://drive.google.com/file/d/1oVu4Q4YRhxVe3oQChubVNVpwAyxu5n6J/view?usp=sharing)
 
 
